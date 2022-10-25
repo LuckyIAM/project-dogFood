@@ -2,21 +2,21 @@ body {
 	margin: 0;
 	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
 }
-h1 {
+.wrapper {
 	height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	align-content: center;
+	justify-content: center;
+	gap: 20px;
+	}
+	.card {
+	width: 100px;
+	height: 100px;
+	box-shadow: 0 0 5px 0 #222;
+	border-radius: 8px;
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 20px;
-	color: #61dafb;
-}
-h1 img {
-	height: 50px;
-	animation: rotate 3s linear infinite;
-}
-@keyframes rotate {
-	100% {
-		transform: rotate(360deg);
-	}
-}
+	font-size: 50px;
+	} 
