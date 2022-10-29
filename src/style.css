@@ -4,7 +4,7 @@ body {
 }
 .wrapper {
 	min-height: 100vh;
-    /* background-color: beige; */
+    background-color: beige;
 }
 .cards-container{
     width: 1200px;

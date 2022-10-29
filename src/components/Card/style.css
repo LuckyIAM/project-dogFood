@@ -7,7 +7,7 @@
 }
 .card__img{
     height: 100px;
-    background: no-repeat center/contain red;
+    background: no-repeat center/contain;
 }
 .card__price{
     font-weight: 800;
