@@ -1,0 +1,28 @@
+.card{
+    border: 1px solid #ffe44e;
+    border-radius: 8px;
+    padding: 8px;
+    display: grid;
+    gap: 10px;
+}
+.card__img{
+    height: 100px;
+    background: no-repeat center/contain red;
+}
+.card__price{
+    font-weight: 800;
+}
+.card__text{
+    font-size: 12px;
+}
+.btn{
+    width: max-content;
+    border: none;
+    border-radius: 30px;
+    height: 30px;
+    padding: 8px 20px;
+    font-weight: 700;
+    background-color: #ffe44d;
+    height: max-content;
+    align-self: flex-end;
+}
