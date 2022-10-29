@@ -2,7 +2,7 @@
 import React from "react";
 import Card from "./components/Card";
 
-import data from "./assers/data.json"
+import data from "./assets/data.json"
 class App extends React.Component{
     render(){
         return(
