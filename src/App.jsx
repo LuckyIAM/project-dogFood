@@ -9,7 +9,7 @@ const App = () => {
 
     return(
         <div className="wrapper">
-            <Header products={goods}/>
+            <Header products={data} update={setGoods}/>
             <div className="cards-container">
                 {/* <Card/> */}
                 {goods.map((d,i) =><Card 
