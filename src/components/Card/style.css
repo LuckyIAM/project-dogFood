@@ -1,5 +1,5 @@
 .card{
-    border: 1px solid #ffe44e;
+    border: 1px solid var(--main-color);
     border-radius: 8px;
     padding: 8px;
     display: grid;
@@ -22,7 +22,7 @@
     height: 30px;
     padding: 8px 20px;
     font-weight: 700;
-    background-color: #ffe44d;
+    background-color: var(--main-color);
     height: max-content;
     align-self: flex-end;
 }

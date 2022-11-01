@@ -1,6 +1,13 @@
+:root{
+    --main-color: #ffe44d;
+}
 body {
 	margin: 0;
 	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
+}
+a{
+    text-decoration: none;
+    color: inherit;
 }
 .wrapper {
 	min-height: 100vh;
