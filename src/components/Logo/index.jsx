@@ -5,6 +5,6 @@ import logo from "./img/logo.svg"
 export default() =>{
     return <a className="logo" href="">
         <img src={logo} alt="Dog Food"/>
-        <span>DogFood</span>
+        {/* <span>DogFood</span> */}
     </a>
 }

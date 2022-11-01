@@ -1,0 +1,26 @@
+.wrapper_footer{
+    height: 200px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.menu, .more_menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+}
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.icon_contact i{
+    color:#000;
+    font-size: 20px;
+    padding-left: 10px;
+}
