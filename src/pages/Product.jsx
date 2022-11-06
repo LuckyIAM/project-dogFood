@@ -1,16 +1,16 @@
 import React,{useState} from "react";
 import data from "../assets/data.json";
-import { Container, Row, Col, Figure, Table, ButtonGroup, Button } from "react-bootstrap";
-
+import { Container, Row, Col, Figure, Table, ButtonGroup, Button, Alert } from "react-bootstrap";
+import {Truck} from "react-bootstrap-icons";
 export default() => {
     let p = data[0];
-    [cnt, setCnt] = useState(0);
+    const [cnt, setCnt] = useState(0);
     return <Container>
         <Row>
             <Col xs={12}>
             <h1>{p.name}</h1>
             </Col>
-            <Col xs={12} md={9}>
+            <Col xs={12} md={8}>
                 <Figure>
                     <Figure.Image src={p.picture}/>
                 </Figure>
@@ -22,16 +22,22 @@ export default() => {
                     <Row>
                     <Col md={6}>
                     <ButtonGroup>
-                        <Button size = {sm} variant="light"disabled={!cnt} onClick =
+                        <Button size = "sm" variant="light"disabled={!cnt} onClick =
                         {e => setCnt(cnt - 1)}>-</Button>
-                        <Button size = {sm} variant="light" disabled>{cnt}</Button>
-                        <Button size = {sm} variant="light" onClick ={e => setCnt(cnt + 1)}>+</Button>
+                        <Button size = "sm" variant="light" disabled>{cnt}</Button>
+                        <Button size = "sm" variant="light" onClick ={e => setCnt(cnt + 1)}>+</Button>
                     </ButtonGroup>
                     </Col>
                     <Col md={6}>
-                        <Button size = {sm} variant="warning">В корзину</Button>
+                        <Button size = "sm" variant="warning">В корзину</Button>
                     </Col>
                     </Row>
+                    <Alert variant="secondary" className="mt-3">
+                        <Row>
+                            <Col md={1}><Truck/></Col>
+                             <Col><small>Доставка по всему миру!</small></Col>
+                        </Row> 
+                    </Alert>
             </Col>
             <Col xs = {12}>
                 <h2>Описание</h2>
