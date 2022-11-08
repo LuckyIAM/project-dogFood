@@ -4,14 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Catalog from "./pages/Catalog"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
+import data from "../assets/data.json"
 // import {Col, Container, Row} from "react-bootstrap";
 
 
 const App = () =>{
-    const [goods,setGoods] = useState(data);
+    const [goods,setGoods] = useState([]);
     return <>
-        <Header products={data} update={setGoods}/>
+        <Header products={goods} update={setGoods}/>
         <Catalog goods={goods}/>
         <Footer/>
     </>
