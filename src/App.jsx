@@ -18,7 +18,7 @@ const App = () =>{
     
     useEffect(()=>{
         console.log("user is changed");
-        setApi(new Api (token));
+        setApi(new Api(token));
     }, [token])
 
 
@@ -36,10 +36,20 @@ const App = () =>{
     // },[]);
 
     useEffect(async () =>{
-        let data = await api.getProducts();
-        console.log("Данные из сервера", data)
-        setGoods(data.products);
-        setData(data.products)
+        api.getProducts()
+            .then(res =>res.json())
+            .then(data =>{
+                console.log(data);
+                setGoods(data.products);
+                setData(data.products)
+            })
+
+        // console.log('aaa');
+        // let res = await api.getProducts();
+        // let data = await res.json();
+        // console.log("Данные из сервера", data)
+        // setGoods(data.products);
+        // setData(data.products)
     }, [])
 
     return <>
