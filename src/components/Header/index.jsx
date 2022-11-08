@@ -27,7 +27,7 @@ export default({products, update}) => {
             <nav>
                 <a href=""><FavIcon/></a>
                 <a href=""><CartIcon/></a>
-                <a href=""><ProfileIcon/></a>
+                <a href=""onClick={e => {e.preventDefault(); openPopup(true)}}><ProfileIcon/></a>
             </nav>
         </header>
         <div>

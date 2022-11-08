@@ -1,19 +1,38 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 //import Product from "./pages/Product";
 import Catalog from "./pages/Catalog"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import data from "../assets/data.json"
+import Modal from "./components/Modal";
 // import {Col, Container, Row} from "react-bootstrap";
 
 
 const App = () =>{
     const [goods,setGoods] = useState([]);
+    const [data, setData] = useState([]);
+    const [token, setToken] = useState(localStorage.getItem("shop-user"));
+    const [popupActive, changePopupActive]=useState(false)
+
+    useEffect(() => {
+        fetch("https://api.react-learning.ru/products",{
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setGoods(data.products);
+            setData(data.products)
+        })
+    },[]);
     return <>
-        <Header products={goods} update={setGoods}/>
-        <Catalog goods={goods}/>
-        <Footer/>
+        <div className="wrapper"> 
+            <Header products={data} update={setGoods} openPopup ={changePopupActive}/>
+            <Catalog goods={goods}/>
+            <Footer/>
+        </div>
+        <Modal isActive={popupActive} changeActive={changePopupActive}/>
     </>
 }
 

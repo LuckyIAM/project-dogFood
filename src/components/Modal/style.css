@@ -1,0 +1,32 @@
+.popup-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0003;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.popup-box .active{
+    display: flex;
+}
+.popup{
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.popup-close{
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}

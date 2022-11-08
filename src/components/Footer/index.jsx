@@ -25,11 +25,11 @@ export default()=>{
                 <h3>8 (999) 00-00-00</h3>
                 <a href="">godfood.ru@gmail.com</a>
                 <div className="icon_contact">
-                    <i class="fa-brands fa-telegram"></i>
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <i class="fa-brands fa-viber"></i>
-                    <i class="fa-brands fa-square-instagram"></i>
-                    <i class="fa-brands fa-vk"></i>
+                    <i className="fa-brands fa-telegram"></i>
+                    <i className="fa-brands fa-whatsapp"></i>
+                    <i className="fa-brands fa-viber"></i>
+                    <i className="fa-brands fa-square-instagram"></i>
+                    <i className="fa-brands fa-vk"></i>
 
                 </div>
             </div>
