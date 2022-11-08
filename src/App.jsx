@@ -1,29 +1,20 @@
 import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Product from "./pages/Product";
+//import Product from "./pages/Product";
+import Catalog from "./pages/Catalog"
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 // import {Col, Container, Row} from "react-bootstrap";
 
 
 const App = () =>{
-    // const st = {
-    //     height: "50px",
-    //     backgroundColor: "silver",
-    //     border: "1px solid white"
-    // }
-    // return <Container style = {{height: "900px", backgroundColor: "darkorchid"}}>
-    //         <Row>
-    //             <Col md={12} style={st}/>
-    //             <Col md = {3} xs = {6} style={st}/>
-    //             <Col md = {3} xs = {6} style={st}/>
-    //             <Col md = {3} xs = {6} style={st}/>
-    //             <Col md = {3} xs = {6} style={st}/>
-    //             <Col md = {12} style={st}/>
-    //             <Col md = {6}style={st}/>
-    //             <Col md = {6}style={st}/>
-    //             <Col md = {12}style={st}/>
-    //         </Row>
-    //     </Container>
-    return <Product/>
+    const [goods,setGoods] = useState(data);
+    return <>
+        <Header products={data} update={setGoods}/>
+        <Catalog goods={goods}/>
+        <Footer/>
+    </>
 }
 
 export default App;
