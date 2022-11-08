@@ -6,7 +6,7 @@ import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
 
-export default({products, update}) => {
+export default({products, update, openPopup}) => {
     const [text,changeText] =useState('Рога');
     const [cnt, setCnt] = useState(0);
     const handler = e=>{

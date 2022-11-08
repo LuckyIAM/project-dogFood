@@ -10,7 +10,7 @@
     align-items: center;
     display: none;
 }
-.popup-box .active{
+.popup-box.active{
     display: flex;
 }
 .popup{
