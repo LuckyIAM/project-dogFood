@@ -22,43 +22,33 @@ const App = () =>{
     }, [token])
 
 
-    // useEffect(() => {
-    //     fetch("https://api.react-learning.ru/products",{
-    //         headers: {
-    //             "Authorization": `Bearer ${token}`
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setGoods(data.products);
-    //         setData(data.products)
-    //     })
-    // },[]);
-
-    useEffect(async () =>{
-        api.getProducts()
+    useEffect( () =>{
+        if(token){
+            api.getProducts()
             .then(res =>res.json())
             .then(data =>{
-                console.log(data);
                 setGoods(data.products);
                 setData(data.products)
             })
-
-        // console.log('aaa');
-        // let res = await api.getProducts();
-        // let data = await res.json();
-        // console.log("Данные из сервера", data)
-        // setGoods(data.products);
-        // setData(data.products)
-    }, [])
+        api.showProfile()
+            .then(result => result)
+            .then(data => {
+                console.log("user", data);
+            })
+        }
+        
+    }, [token])
 
     return <>
         <div className="wrapper"> 
-            <Header products={data} update={setGoods} openPopup ={changePopupActive}/>
+    
+            <Header products={data} update={setGoods} openPopup =
+            {changePopupActive} user={!!token} setToken={setToken}/>
             <Catalog goods={goods}/>
             <Footer/>
         </div>
-        <Modal isActive={popupActive} changeActive={changePopupActive}/>
+        {!token &&<Modal isActive={popupActive} changeActive=
+        {changePopupActive} setToken={setToken} api={api} />}
     </>
 }
 
