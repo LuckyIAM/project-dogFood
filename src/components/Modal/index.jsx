@@ -16,7 +16,7 @@ export default ({isActive, changeActive, api, setToken}) =>{
             .then(data =>{
                 console.log(data);
                 localStorage.setItem("shop-user", data.token)
-                setToken(data.setToken)
+                setToken(data.token)
                 setEmail("");
                 setPwd("")
                 changeActive(false)
