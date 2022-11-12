@@ -30,14 +30,17 @@ const App = () =>{
                 setGoods(data.products);
                 setData(data.products)
             })
-        api.showProfile()
-            .then(result => result)
-            .then(data => {
-                console.log("user", data);
-            })
+            api.showProfile()
+                .then(result => result)
+                .then(data => {
+                    console.log("user", data);
+                })
+        }else{
+            setGoods([]);
+            setData([])
         }
         
-    }, [token])
+    }, [api])
 
     return <>
         <div className="wrapper"> 

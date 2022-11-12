@@ -15,6 +15,11 @@ export default ({isActive, changeActive, api, setToken}) =>{
             .then(res => res.json())
             .then(data =>{
                 console.log(data);
+                localStorage.setItem("shop-user", data.token)
+                setToken(data.setToken)
+                setEmail("");
+                setPwd("")
+                changeActive(false)
             })
     }
     return <div className={isActive ? "popup-box active": "popup-box"}>
