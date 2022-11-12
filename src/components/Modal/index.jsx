@@ -10,6 +10,7 @@ export default ({isActive, changeActive, api, setToken}) =>{
     const [pwd, setPwd] = useState("")
     const handler = e =>{
         e.preventDefault();
+        console.log("aaa");
         api.logIn({"email": email, "password": pwd})
             .then(res => res.json())
             .then(data =>{
@@ -19,7 +20,7 @@ export default ({isActive, changeActive, api, setToken}) =>{
     return <div className={isActive ? "popup-box active": "popup-box"}>
         <div className="popup">
             <XCircle className="popup-close" onClick={e => {changeActive(false)}}/>
-            <Form>
+            <Form onSubmit={handler}>
                 <Form.Group>
                     <Form.Label>Email</Form.Label>
                     <Form.Control 
