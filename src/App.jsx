@@ -1,18 +1,24 @@
 import React, {useState, useEffect} from "react";
+import {Routes, Route} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css";
-//import Product from "./pages/Product";
+import Product from "./pages/Product";
 import Catalog from "./pages/Catalog"
+import Main from "./pages/Main"
+import Profile from "./pages/Profile"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import Api from "./Api.js"
+import Local from "./Local"
+
 // import {Col, Container, Row} from "react-bootstrap";
 
 
 const App = () =>{
     const [goods,setGoods] = useState([]);
     const [data, setData] = useState([]);
-    const [token, setToken] = useState(localStorage.getItem("shop-user"));
+    const [token, setToken] = useState(Local.getItem("shop-user"));
+    const [user, setUser] = useState(Local.getItem("u", true))
     const [popupActive, changePopupActive]=useState(false)
     const [api, setApi] = useState(new Api(token));
     
@@ -46,12 +52,21 @@ const App = () =>{
         <div className="wrapper"> 
     
             <Header products={data} update={setGoods} openPopup =
-            {changePopupActive} user={!!token} setToken={setToken}/>
-            <Catalog goods={goods}/>
+            {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
+            {/*  */}
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/catalog" element={<Catalog goods={goods}/>}/>
+                <Route path="/product" element={<Product/>}/>
+                <Route path="/profile" element={<Product user={{user}}/>}/>
+            </Routes>
             <Footer/>
         </div>
-        {!token &&<Modal isActive={popupActive} changeActive=
-        {changePopupActive} setToken={setToken} api={api} />}
+        {!token &&<Modal isActive={popupActive}
+        changeActive={changePopupActive} 
+        setToken={setToken} 
+        api={api} 
+        setUser={setUser} />}
     </>
 }
 

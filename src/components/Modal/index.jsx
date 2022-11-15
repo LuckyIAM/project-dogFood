@@ -4,19 +4,21 @@ import {Form, Button} from "react-bootstrap";
 import {XCircle} from "react-bootstrap-icons"
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Local from "../../Local";
 
-export default ({isActive, changeActive, api, setToken}) =>{
+export default ({isActive, changeActive, api, setToken, setUser}) =>{
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("")
     const handler = e =>{
         e.preventDefault();
-        console.log("aaa");
         api.logIn({"email": email, "password": pwd})
             .then(res => res.json())
             .then(data =>{
                 console.log(data);
-                localStorage.setItem("shop-user", data.token)
+                Local.setItem("shop-user", data.token)
+                Local.setItem("u", data.data, true)
                 setToken(data.token)
+                setUser(data.data);
                 setEmail("");
                 setPwd("")
                 changeActive(false)
