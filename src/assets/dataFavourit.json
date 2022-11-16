@@ -1,0 +1,57 @@
+[
+    {
+        "discount": 0,
+        "pictures": "https://zoomarket.com.ru/image/cache/data/products/35c14457e3f7385285ac4b08b8e43b5f-767x767.jpg",
+        "_id": "637365e559b98b038f779d",
+        "name": "Канат для собак",
+        "description": "This is where it started",
+        "price": 320,
+        "__v": 0
+    },
+    {
+        "discount": 0,
+        "pictures": "https://cdn-irec.r-99.com/sites/default/files/product-images/45636/16796_big.jpg",
+        "_id": "637365e559b98b038f711d",
+        "name": "Говяжьи кишки - отзывы",
+        "description": "This is where it started",
+        "price": 660,
+        "__v": 0
+    },
+    {
+        "discount": 0,
+        "pictures": "https://zoomarket.com.ru/image/cache/data/products/9b8d968aa385246fc99a62d797fae07c-767x767.jpg",
+        "_id": "637365e559b98b022f0011d",
+        "name": "Миска из нержавеющей стали на резинке с принтом",
+        "description": "This is where it started",
+        "price": 200,
+        "__v": 0
+    },
+    {
+        "discount": 23,
+        "pictures": "https://zoomarket.com.ru/image/cache/data/Lakomstva/w480-767x767.png",
+        "_id": "637365e559b98b011f0011d",
+        "name": "Ухо говяжье",
+        "description": "This is where it started",
+        "price": 195,
+        "__v": 0
+    },
+    {
+        "discount": 0,
+        "pictures": "https://zoomarket.com.ru/image/cache/data/Lakomstva/8754586253-767x767.jpg",
+        "_id": "637365e559b98b038f0011d",
+        "name": "Утиные Лапки",
+        "description": "This is where it started",
+        "price": 86,
+        "__v": 0
+    },
+    {
+        "discount": 15,
+        "pictures": "https://zoomarket.com.ru/image/cache/data/products/9b453107dda3f267ad9eb891cccf882d-767x767.jpg",
+        "_id": "637365e522b98b038f0011d",
+        "name": "Ошейник",
+        "description": "This is where it started",
+        "price": 300,
+        "__v": 0
+    }
+    
+]

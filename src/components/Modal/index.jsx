@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Api} from "../../Api"
 import {Form, Button} from "react-bootstrap";
 import {XCircle} from "react-bootstrap-icons"
 import "./style.css";

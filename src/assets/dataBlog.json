@@ -1,0 +1,48 @@
+[
+    {
+        "image": "https://proprikol.ru/wp-content/uploads/2021/01/krasivye-kartinki-sobak-31.jpg",
+        "_id": "637365e559b98b038f779d31",
+        "title": "Как выбрать себе питомца",
+        "text": "This is where it started",
+        "created_at": "2022-11-15",
+        "__v": 0
+    },
+    {
+        "image": "https://static.mk.ru/upload/entities/2022/02/20/16/articles/detailPicture/8b/1a/56/85/097aceefb885d7203a0b508ad28dd583.jpg",
+        "_id": "637395c859b98b038f779d32",
+        "title": "Дрессировка щенка: что нужно знать",
+        "text": "This is where it started",
+        "created_at": "2022-07-15",
+        "__v": 0
+    },
+    {
+        "image": "https://animalreader.ru/wp-content/uploads/2016/09/haski.jpg",
+        "_id": "6373966c59b98b038f779d33",
+        "title": "Идем гулять с собакой в лес",
+        "text": "This is where it started",
+        "created_at": "2022-03-11",
+        "__v": 0
+    },
+    {
+        "image": "https://bugaga.ru/uploads/posts/2017-02/1486721235_sobaki-kotorye-ohotyatsya-1.jpg",
+        "_id": "6373973259b98b038f779d34",
+        "title": "Сухие корма для собак",
+        "text": "This is where it started",
+        "created_at": "2021-11-30",
+        "__v": 0
+    },
+    {
+        "image": "https://bugaga.ru/uploads/posts/2017-02/1486721236_sobaki-kotorye-ohotyatsya-11.jpg",
+        "title": "6 лакомств для собак",
+        "text": "This is where it started",
+        "created_at": "2021-09-24",
+        "__v": 0
+    },
+    {
+        "image": "https://wallbox.ru/resize/1920x1080/wallpapers/main2/201716/vzglad-sobaka1234.jpg",
+        "title": "Понимают ли собаки нашу речь",
+        "text": "This is where it started",
+        "created_at": "2021-05-07",
+        "__v": 0
+    }
+]

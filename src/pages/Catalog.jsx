@@ -12,6 +12,7 @@ export default ({goods}) => {
         img = {d.pictures}
         text = {d.name}
         price = {d.price}
+        id={d._id}
         />):
         <h1 style={{gridColumnEnd: "soan 4", textAlign: "center"}}>
             Для отображение данных необходимо зайти</h1>}

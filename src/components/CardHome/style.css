@@ -1,0 +1,23 @@
+.card{
+    width: 250px;
+    height: 370px;
+    border: none;
+    display: flex;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.btn{
+    background-color: var(--main-color);
+    border-radius: 30px;
+    width: max-content;
+    position: relative;
+    margin: 15px;
+    bottom: 1px;
+    left: -90px;
+}
+.btn:hover{
+    background-color: rgb(243, 251, 118);
+}
