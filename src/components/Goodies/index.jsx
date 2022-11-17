@@ -26,7 +26,7 @@ export default ({bests,transform}) =>{
                     detail={""}
                     img={good.pictures}
                     price_new={good.price}
-                    description={good.name}
+                    name={good.name}
                     key={i}
                     />
             )}

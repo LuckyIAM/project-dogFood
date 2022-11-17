@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./style.css";
 import { Heart, HeartFill} from "react-bootstrap-icons";
 
-const CardHome = ({detail, img, price_old, price_new, description}) =>{
+const CardHome = ({detail, img, price_old, price_new, name}) =>{
     const[data, setData] = useState([]);
     const [token, setToken] = useState(localStorage.getItem("token"));
     let [cnt, setCnt] = useState(0);
@@ -48,7 +48,7 @@ const CardHome = ({detail, img, price_old, price_new, description}) =>{
         <div className="card_img" style={cardStyle}></div>
         <div className="old_price"><small><del>{price_old}</del></small> </div>
         <div className="new_price">{price_new} ₽</div>
-        <div className="description">{description}</div>
+        <div className="description">{name}</div>
         <button className="btn">В корзину</button>
     </div>
     </> 

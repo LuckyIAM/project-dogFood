@@ -8,7 +8,7 @@ export default ({user}) => {
                 <h1>Профиль</h1>
                 <h2>{user.name}</h2>
                 <a hraf={`mailto:${user.email}`}>{user.email}</a>
-                <p>{user.about}</p>
+                <h3>{user.about}</h3>
             </Col>
             <Col md={6}>
                 <Figure>

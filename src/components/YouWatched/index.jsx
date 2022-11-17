@@ -28,7 +28,7 @@ export default ({transform}) =>{
                     img={good.pictures}
                     price_old={good.discount ? good.price - (good.discount *(good.price / 100)): ""}
                     price_new={good.price}
-                    description={good.description}
+                    name={good.name}
                     key={i}
                     />
             )}
