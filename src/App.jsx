@@ -22,7 +22,7 @@ const App = () =>{
     const [user, setUser] = useState(Local.getItem("u", true))
     const [popupActive, changePopupActive]=useState(false)
     const [api, setApi] = useState(new Api(token));
-    
+    const [fav, setFav] = useState([])
     useEffect(()=>{
         console.log("user is changed");
         setApi(new Api(token));
@@ -65,11 +65,12 @@ const App = () =>{
             { screen.width < 768 ? <HeaderMini products={data} update={setGoods} openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
             : <Header products={data} update={setGoods} openPopup =
-            {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
+            {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}
+            like = {fav.length}/>
             }
             <Routes>
                 <Route path="/" element={<Main/>}/>
-                <Route path="/catalog" element={<Catalog goods={goods}/>}/>
+                <Route path="/catalog" element={<Catalog goods={goods} setFav={setFav}/>}/>
                 <Route path="/product/:id" element={<Product api={api}/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
             </Routes>

@@ -88,6 +88,14 @@ class Api{
         }
        }) 
     }
+    setLike(id, flag){
+        return fetch(`${this.path}/products/likes/${id}`,{
+            method: flag ? "PUT" : "DELETE",
+            headers:{
+                authorization: `Bearer ${this.token}`
+            }
+        })
+    }
 
 }
 export default Api;
