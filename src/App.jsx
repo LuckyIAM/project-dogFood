@@ -8,8 +8,9 @@ import Profile from "./pages/Profile"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
-import Api from "./Api.js"
-import Local from "./Local"
+import Api from "./Api.js";
+import Local from "./Local";
+import HeaderMini from "./components/HeaderMini";
 
 // import {Col, Container, Row} from "react-bootstrap";
 
@@ -47,13 +48,25 @@ const App = () =>{
         }
         
     }, [api])
+    const quantity = ()=>{
+        if (screen.width < 500){
+            setQuantity(1);
+        }else if (screen.width >= 540 && screen.width < 850){
+            setQuantity(2);
+        }else if (screen.width >= 850 && screen.width < 1200){
+            setQuantity(3);
+        }else if (screen.width >= 1200){
+            setQuantity(4);
+        }
+    } 
 
     return <>
         <div className="wrapper"> 
-    
-            <Header products={data} update={setGoods} openPopup =
+            { screen.width < 768 ? <HeaderMini products={data} update={setGoods} openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
-            {/*  */}
+            : <Header products={data} update={setGoods} openPopup =
+            {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
+            }
             <Routes>
                 <Route path="/" element={<Main/>}/>
                 <Route path="/catalog" element={<Catalog goods={goods}/>}/>

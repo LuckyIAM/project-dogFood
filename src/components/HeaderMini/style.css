@@ -1,0 +1,15 @@
+.navbar-icon{
+    background: var(--main-color);
+    border: none;
+    font-size: 20px;
+}
+.slide-bar nav a{
+    margin-top: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 0 5px 0 rgb(87, 48, 48);
+    width: 60%;
+    padding: 6px 20px;
+    border-radius: 15px;
+}

@@ -12,8 +12,7 @@ export default ({goods,transform}) =>{
         display: "flex",
         gap: "30px",
         position: "relative",
-        transition: "2s transform ease-out",
-        transform: `translateX(${transform}px)`
+        
     }
     console.log(st.width);
     

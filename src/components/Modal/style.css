@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     display: none;
+    z-index: 2;
 }
 .popup-box.active{
     display: flex;

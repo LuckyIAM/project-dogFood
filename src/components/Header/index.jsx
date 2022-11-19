@@ -10,6 +10,8 @@ import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
 
 
+
+
 export default({products, update, openPopup, user, setToken, setUser}) => {
     const [text,changeText] =useState('Пойск');
     const [cnt, setCnt] = useState(0);

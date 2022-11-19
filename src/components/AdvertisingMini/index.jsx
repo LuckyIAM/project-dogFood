@@ -4,7 +4,7 @@ import { Container, Row, Col, Figure } from "react-bootstrap";
 
 export default ({img,text1, text2, text3, color}) =>{
     const st2 = {
-        background: `url(${img}) no-repeat center/cover`,
+        background: `url(${img}) no-repeat center/contain`,
         padding: "20px 40px",
         borderRadius: "30px"
     }
