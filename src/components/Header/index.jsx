@@ -7,12 +7,13 @@ import {BoxArrowInRight, BoxArrowLeft} from "react-bootstrap-icons";
 import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
+import Card from "../Card";
 
 
 
 
 
-export default({products, update, openPopup, user, setToken, setUser}) => {
+export default({products, update, openPopup, user, setToken, setUser, like}) => {
     const [text,changeText] =useState('Пойск');
     const [cnt, setCnt] = useState(0);
     const handler = e=>{
@@ -39,7 +40,7 @@ export default({products, update, openPopup, user, setToken, setUser}) => {
             <Logo/>
             <input type="search" value={text} onChange={handler}/>
             <nav>
-                {user &&< a href=""><FavIcon/></a>}
+                {user &&< Link to="/favourites"><FavIcon /><span>{like}</span></Link>}
                 {user && <Link to="/catalog"><CartIcon/></Link>}
                 {user && <Link to="/profile"><ProfileIcon/></Link>} 
                 {user && <a href=""onClick={logout}><BoxArrowLeft/></a>}

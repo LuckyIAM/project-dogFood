@@ -11,6 +11,7 @@ import Modal from "./components/Modal";
 import Api from "./Api.js";
 import Local from "./Local";
 import HeaderMini from "./components/HeaderMini";
+import Favourit from "./pages/Favourit";
 
 // import {Col, Container, Row} from "react-bootstrap";
 
@@ -48,17 +49,13 @@ const App = () =>{
         }
         
     }, [api])
-    const quantity = ()=>{
-        if (screen.width < 500){
-            setQuantity(1);
-        }else if (screen.width >= 540 && screen.width < 850){
-            setQuantity(2);
-        }else if (screen.width >= 850 && screen.width < 1200){
-            setQuantity(3);
-        }else if (screen.width >= 1200){
-            setQuantity(4);
-        }
-    } 
+    // console.log(goods);
+    useEffect(()=>{
+        let f = goods.filter(el => el.likes.includes(user._id))
+        setFav(f);
+    }, [goods])
+
+    console.log("fav",fav);
 
     return <>
         <div className="wrapper"> 
@@ -70,7 +67,8 @@ const App = () =>{
             }
             <Routes>
                 <Route path="/" element={<Main/>}/>
-                <Route path="/catalog" element={<Catalog goods={goods} setFav={setFav}/>}/>
+                <Route path="/favourites" element={<Favourit favourites={fav} api={api}/>} />
+                <Route path="/catalog" element={<Catalog goods={goods} setFav={setFav} api={api}/>}/>
                 <Route path="/product/:id" element={<Product api={api}/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
             </Routes>

@@ -21,7 +21,7 @@ import YouWatched from "../components/YouWatched";
 
 export default() => {
     const [data,setData]=useState([]);
-    const [goods,setGoods]=useState([]);
+    const [gds,setGds]=useState([]);
     const [bests, setBests] =useState([]);
     const [token, setToken]=useState(localStorage.getItem('token'));
     const [api,setApi] = useState(new Api(token));
@@ -88,7 +88,7 @@ export default() => {
             .then(res => res.json())
             .then(data => {
                 setBests(data.products.filter(g => g.likes.length>5))
-                setGoods(data.products.sort((a, b) => {
+                setGds(data.products.sort((a, b) => {
                     const nameA = a.name.toUpperCase(); 
                     const nameB = b.name.toUpperCase(); 
                     if (nameA < nameB) {
@@ -106,7 +106,7 @@ export default() => {
     }, [api])
 
   
-    console.log("goods",goods,"\nbests", bests, "\n data", data );
+    console.log("goods",gds,"\nbests", bests, "\n data", data );
 
     return <>
     <div className="title-box" style={title}>    
@@ -133,24 +133,26 @@ export default() => {
                 <h2>Хиты</h2>
             </Col>
             <Col md={6} xs={6} className="d-flex justify-content-end" >
-                <ArrowLeftCircle className="goods"  style={arrow} 
+                <ArrowLeftCircle className="gds"  style={arrow} 
                     onClick={() => {
-                        if( cnt1 !== 1 && goods.length !== 0){
+                        if( cnt1 !== 1 && gds.length !== 0){
                             setCnt1(cnt1 - 1);
-                            setTransform1(transform1 + (280 * widthScreen))
+                            setTransform1(transform1 + (280 * widthScreen));
+                            console.log(cnt1, transform1);
                         }
                     }}/>
                  
-                <ArrowRightCircle className="goods" style={arrow} 
+                <ArrowRightCircle className="gds" style={arrow} 
                     onClick={() =>{
-                        if( cnt1 <= goods.length / widthScreen ){
+                        if( cnt1 <= gds.length / widthScreen ){
                             setCnt1(cnt1 + 1);
-                            setTransform1(-(280 * widthScreen) * cnt1)
+                            setTransform1(-(280 * widthScreen) * cnt1);
+                            console.log(cnt1, transform1);
                         }
                     }}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Bestseller transform={transform1} goods={goods} />
+                <Bestseller transform={transform1} goods={gds} />
             </Col>
             <Col md={6} xs={12} style={stCarousel}>
                 <AdvertisingMini text1={text1[0]} text2={text2[0]} 
