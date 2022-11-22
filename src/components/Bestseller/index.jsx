@@ -1,10 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import CardHome from "../CardHome";
 
 
 
-export default ({goods,transform}) =>{
-    
+export default ({goods,transform, api, setFav}) =>{
 
     const st={
         width: `${goods.length * 280}px`,
@@ -16,6 +15,8 @@ export default ({goods,transform}) =>{
         transform: `translateX(${transform}px)`
     }
     console.log(st.width);
+
+    
     
 
     return(
@@ -23,12 +24,16 @@ export default ({goods,transform}) =>{
         <div className="bestseller-box" style={st}>
             {goods.map((good,i) => 
                     <CardHome  
-                    detail={good.discount ? good.discount + "%": ""}
-                    img={good.pictures}
-                    price_old={good.discount ? good.price - (good.discount *(good.price / 100)): ""}
-                    price_new={good.price}
+                    discount={good.discount ? good.discount + "%": ""}
+                    pictures={good.pictures}
+                    price_old={good.discount ? Math.floor(good.price - (good.discount *(good.price / 100))) : ""}
+                    price={good.price}
                     name={good.name}
+                    likes ={good.likes}
+                    _id={good._id}
                     key={i}
+                    api={api}
+                    setFav={setFav}
                     />
             )}
         </div>

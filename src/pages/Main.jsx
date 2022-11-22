@@ -16,13 +16,15 @@ import { ArrowLeftCircle, ArrowRightCircle } from "react-bootstrap-icons";
 import dataBlog from "../assets/dataBlog.json"
 import dataFavourit from "../assets/dataFavourit.json"
 import YouWatched from "../components/YouWatched";
+import Local from "../Local"
 
 
 
-export default() => {
+export default({favourites}) => {
     const [data,setData]=useState([]);
     const [gds,setGds]=useState([]);
     const [bests, setBests] =useState([]);
+    const [user, setUser] = useState(Local.getItem("u"))
     const [token, setToken]=useState(localStorage.getItem('token'));
     const [api,setApi] = useState(new Api(token));
     // const [transform, setTransform] = useState(0);
@@ -34,7 +36,9 @@ export default() => {
     const [transform3, setTransform3] = useState(0);
     const [cnt4, setCnt4] = useState(1);
     const [transform4, setTransform4] = useState(0);
+    const [fv, setFv]=useState([])
     let widthScreen;
+    
     
    
 
@@ -87,6 +91,7 @@ export default() => {
         api.getProducts()
             .then(res => res.json())
             .then(data => {
+                setData(data.products)
                 setBests(data.products.filter(g => g.likes.length>5))
                 setGds(data.products.sort((a, b) => {
                     const nameA = a.name.toUpperCase(); 
@@ -105,15 +110,15 @@ export default() => {
         
     }, [api])
 
-  
-    console.log("goods",gds,"\nbests", bests, "\n data", data );
+    console.log("bests", bests, "gds", gds, "data", data);
+
 
     return <>
     <div className="title-box" style={title}>    
         <div className="wrapper-box" style={wrapper}>
             <h1 className="home__title">
                 Крафтовые<br/>
-                лакомства длв <br/>
+                лакомства для <br/>
                 собак
                 </h1>
             <p className="home__text">
@@ -152,7 +157,7 @@ export default() => {
                     }}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Bestseller transform={transform1} goods={gds} />
+                <Bestseller transform={transform1} goods={gds} api={api} />
             </Col>
             <Col md={6} xs={12} style={stCarousel}>
                 <AdvertisingMini text1={text1[0]} text2={text2[0]} 

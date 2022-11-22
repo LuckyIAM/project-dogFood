@@ -15,7 +15,7 @@ export default ({goods, api, setFav}) => {
         }else if (innerWidth >= 1050){
             setQuantity(4);
         }
-    }, quantityProd)   
+    }, [])   
         
      const  stCardsContainer = {
         padding: "30px 10px",

@@ -58,7 +58,7 @@ class Api{
         return(fetch(`${this.path}/signin`,{
             method: "POST",
             headers:{
-                // authorization: `${this.token}`,
+                // authorization: `Bearer ${this.token}`,
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
@@ -70,7 +70,7 @@ class Api{
         return(fetch(`${this.path}/signup`,{
             method: "POST",
             headers:{
-                authorization: `${this.token}`,
+                authorization: `Bearer ${this.token}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -88,7 +88,7 @@ class Api{
         }
        }) 
     }
-    setLike(id, flag){
+    setLikes(id, flag){
         return fetch(`${this.path}/products/likes/${id}`,{
             method: flag ? "PUT" : "DELETE",
             headers:{

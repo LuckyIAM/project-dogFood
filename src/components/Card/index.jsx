@@ -3,6 +3,7 @@ import "./style.css"
 import {Link} from "react-router-dom";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import Local from "../../Local";
+import Api from "../../Api.js";
 
 const Card =({name, price, pictures, _id, likes, api}) => {
     const[like, setLike] = useState(false);
@@ -21,7 +22,7 @@ const Card =({name, price, pictures, _id, likes, api}) => {
         e.preventDefault();
         setLike(!like)
         console.log(like);
-        api.setLike(_id, !like)
+        api.setLikes(_id, !like)
             .then(rest =>rest.json())
             .then(data => {
                 if(!like){
