@@ -20,13 +20,12 @@ import Local from "../Local"
 
 
 
-export default({favourites}) => {
+export default({setFav, api}) => {
     const [data,setData]=useState([]);
     const [gds,setGds]=useState([]);
     const [bests, setBests] =useState([]);
     const [user, setUser] = useState(Local.getItem("u"))
     const [token, setToken]=useState(localStorage.getItem('token'));
-    const [api,setApi] = useState(new Api(token));
     // const [transform, setTransform] = useState(0);
     const [cnt1, setCnt1] = useState(1);
     const [transform1, setTransform1] = useState(0);
@@ -36,7 +35,6 @@ export default({favourites}) => {
     const [transform3, setTransform3] = useState(0);
     const [cnt4, setCnt4] = useState(1);
     const [transform4, setTransform4] = useState(0);
-    const [fv, setFv]=useState([])
     let widthScreen;
     
     
@@ -157,13 +155,13 @@ export default({favourites}) => {
                     }}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Bestseller transform={transform1} goods={gds} api={api} />
+                <Bestseller transform={transform1} goods={gds} api={api} setFav={setFav} />
             </Col>
-            <Col md={6} xs={12} style={stCarousel}>
+            <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[0]} text2={text2[0]} 
                 text3={text3[0]} img={set} color={clr[0]} />
             </Col>
-            <Col md={6} xs={12}>
+            <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[1]} text2={text2[1]} 
                 text3={text3[1]} img={oil} color={clr[1]}/>
             </Col>
@@ -187,13 +185,13 @@ export default({favourites}) => {
                 }}}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Goodies transform={transform2} bests={bests} />
+                <Goodies transform={transform2} bests={bests} api={api} setFav={setFav}/>
             </Col>
-            <Col md={6} xs={12}>
+            <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[2]} text2={text2[2] } 
                 text3={text3[1]} img={corn} color={clr[2]}/>
             </Col>
-            <Col md={6} xs={12}>
+            <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[3]} text2={text2[3]} 
                 text3={text3[1]} img={neck} color={clr[3]}/>
             </Col>

@@ -5,6 +5,9 @@
         "_id": "637365e559b98b038f779d",
         "name": "Канат для собак",
         "description": "This is where it started",
+        "likes": [
+            "622bd81b06c7d323b8ae4614"
+        ],
         "price": 320,
         "__v": 0
     },
@@ -14,6 +17,9 @@
         "_id": "637365e559b98b038f711d",
         "name": "Говяжьи кишки - отзывы",
         "description": "This is where it started",
+        "likes": [
+            "622bd81b06c7d323b8ae4614"
+        ],
         "price": 660,
         "__v": 0
     },
@@ -23,6 +29,9 @@
         "_id": "637365e559b98b022f0011d",
         "name": "Миска из нержавеющей стали на резинке с принтом",
         "description": "This is where it started",
+        "likes": [
+            "622bd81b06c7d323b8ae4614"
+        ],
         "price": 200,
         "__v": 0
     },
@@ -32,6 +41,9 @@
         "_id": "637365e559b98b011f0011d",
         "name": "Ухо говяжье",
         "description": "This is where it started",
+        "likes": [
+            "622bd81b06c7d323b8ae4614"
+        ],
         "price": 195,
         "__v": 0
     },
@@ -41,6 +53,9 @@
         "_id": "637365e559b98b038f0011d",
         "name": "Утиные Лапки",
         "description": "This is where it started",
+        "likes": [
+            "622bd81b06c7d323b8ae4614"
+        ],
         "price": 86,
         "__v": 0
     },
@@ -50,6 +65,9 @@
         "_id": "637365e522b98b038f0011d",
         "name": "Ошейник",
         "description": "This is where it started",
+        "likes": [
+            "622bd81b06c7d323b8ae4614"
+        ],
         "price": 300,
         "__v": 0
     }

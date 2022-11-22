@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Card from "../components/Card";
 
 
-export default ({favourites, api}) => {
-    let wdth ;
 
+export default ({goods, setFav,api}) => {
+    let wdth ;
+    
+
+    
     if (innerWidth < 340){
         wdth=1;
     }else if (innerWidth >= 500 && innerWidth < 780){
@@ -27,11 +30,15 @@ export default ({favourites, api}) => {
 
     return<>
         <div className="card__favourits" style={stCards}>
-            {favourites.length>0 ?  
-            favourites.map((fv,i) => <Card
-                key={i}
-                {...fv}
-                api = {api}
+            {goods.length>0 ?  
+                goods.map((good,i) => <Card
+                    {...good}
+                    discount={good.discount}
+                    name={good.name.length > 23 ? good.name.slice(0,23) + "..." : good.name}
+                    price_old={good.discount ? Math.floor(good.price - (good.discount *(good.price / 100))) : ""}
+                    key={good._id}
+                    api={api}
+                    setFav={setFav}
                 />):
             <h1 style={{gridColumnEnd: `soan ${wdth}`, textAlign: "center"}}>
                 Для отображение данных необходимо зайти</h1>

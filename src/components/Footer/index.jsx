@@ -4,6 +4,7 @@ import "./style.css";
 
 export default()=>{
     return(
+        
         <div className="wrapper_footer">
             <div className="logo">
                 <Logo/>
@@ -34,5 +35,6 @@ export default()=>{
                 </div>
             </div>
         </div>
+        
     )
 }

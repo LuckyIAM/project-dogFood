@@ -1,5 +1,5 @@
 import React from "react";
-import CardHome from "../CardHome";
+import Card from "../Card";
 
 
 
@@ -15,7 +15,9 @@ export default ({goods,transform, api, setFav}) =>{
         transform: `translateX(${transform}px)`
     }
     console.log(st.width);
-
+    const stDiscount = {
+        display: "none"
+    }
     
     
 
@@ -23,15 +25,12 @@ export default ({goods,transform, api, setFav}) =>{
                   
         <div className="bestseller-box" style={st}>
             {goods.map((good,i) => 
-                    <CardHome  
-                    discount={good.discount ? good.discount + "%": ""}
-                    pictures={good.pictures}
+                    <Card  
+                    {...good}
+                    discount={good.discount}
+                    name={good.name.length > 23 ? good.name.slice(0,23) + "..." : good.name}
                     price_old={good.discount ? Math.floor(good.price - (good.discount *(good.price / 100))) : ""}
-                    price={good.price}
-                    name={good.name}
-                    likes ={good.likes}
-                    _id={good._id}
-                    key={i}
+                    key={good._id}
                     api={api}
                     setFav={setFav}
                     />

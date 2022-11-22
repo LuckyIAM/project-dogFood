@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import CardHome from "../CardHome";
+import Card from "../Card";
 
 
 
-export default ({bests,transform}) =>{
+export default ({bests,transform, api, setFav}) =>{
     
 
     const st={
@@ -21,13 +21,15 @@ export default ({bests,transform}) =>{
     return(
                   
         <div className="bestseller-box" style={st}>
-            {bests.map((good,i) => 
-                    <CardHome  
-                    detail={""}
-                    img={good.pictures}
-                    price_new={good.price}
-                    name={good.name}
-                    key={i}
+            {bests.map((good) => 
+                    <Card  
+                    {...good}
+                    discount={good.discount}
+                    name={good.name.length > 23 ? good.name.slice(0,23) + "..." : good.name}
+                    price_old={good.discount ? Math.floor(good.price - (good.discount *(good.price / 100))) : ""}
+                    key={good._id}
+                    api={api}
+                    setFav={setFav}
                     />
             )}
         </div>

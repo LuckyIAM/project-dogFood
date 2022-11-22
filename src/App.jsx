@@ -67,7 +67,7 @@ const App = () =>{
             }
             <Routes>
                 <Route path="/" element={<Main setFav={setFav} api={api}/>}/>
-                <Route path="/favourites" element={<Favourit favourites={fav} api={api}/>} />
+                <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog goods={goods} setFav={setFav} api={api}/>}/>
                 <Route path="/product/:id" element={<Product api={api}/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
