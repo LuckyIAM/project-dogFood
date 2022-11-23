@@ -15,7 +15,9 @@
 .card__text{
     font-size: 12px;
 }
-.btn{
+.btn{display: flex;
+    justify-content: center;
+    align-items: center;
     width: max-content;
     border: none;
     border-radius: 30px;
@@ -23,6 +25,5 @@
     padding: 8px 20px;
     font-weight: 700;
     background-color: var(--main-color);
-    height: max-content;
-    align-self: flex-end;
+    align-self: flex-start;
 }

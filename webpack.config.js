@@ -7,7 +7,7 @@ module.exports = {
 		path: path.resolve(__dirname, "docs"),
 		filename: "main.js",
 		// publicPath: "/"
-		publicPath: "/"
+		publicPath: "/project-dogFood/"
 		
 	},
 	devServer: {
