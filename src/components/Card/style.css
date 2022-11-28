@@ -27,3 +27,8 @@
     background-color: var(--main-color);
     align-self: flex-start;
 }
+.old_price > small{
+    position: relative;
+    left: 0;
+    top: 0;
+}

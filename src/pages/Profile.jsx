@@ -3,7 +3,7 @@ import {Container, Row, Col, Figure} from "react-bootstrap"
 
 export default ({user}) => {
     return <Container>
-       {user.name && <Row>
+       {user.name ? <Row>
             <Col md={6}>
                 <h1>Профиль</h1>
                 <h2>{user.name}</h2>
@@ -15,7 +15,12 @@ export default ({user}) => {
                     <Figure.Image src={user.avatar}/>
                 </Figure>
             </Col>
-        </Row>}
-        
+        </Row>:
+        <Row>
+            <Col>
+                <h1>Дла входа в страницу профеля. Пожайлуста регистрируитесь!</h1>
+            </Col>
+        </Row>
+        }
     </Container>
 }

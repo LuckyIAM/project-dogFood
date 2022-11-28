@@ -1,0 +1,54 @@
+.wrapper_footer {
+    display: flex;
+    background-color: var(--main-color);
+    
+}
+.contact, .icon_contact{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+.contact > span {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+}
+.footer-nav{
+    width: 100vw;
+    box-shadow: 0 -5px 5px -5px #888;
+    margin-top: 15px;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.colum-direction{
+    padding: 5px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+.colum-direction span{
+    
+    font-size: 10px;
+    font-weight: 700;
+}
+small{
+    position: relative;
+    top: -15px;
+    left: -35px;
+    background-color: rgb(27, 108, 27);
+    color: #fff; 
+    border-radius: 6px;
+    font-size: 10px;
+    padding: 0px 3px;
+}
+.clouse{
+    position: relative;
+    top: 0px;
+    left: -35px;  
+    margin-right: -25px;
+}

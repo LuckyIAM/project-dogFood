@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./style.css";
 
 
-const BlogCard = ({img, data_publication, title}) =>{
+const BlogCard = ({img, created_at, title}) =>{
     const[data, setData] = useState([]);
     const [token, setToken] = useState(localStorage.getItem("token"));
     let [cnt, setCnt] = useState(0);
@@ -14,7 +14,7 @@ const BlogCard = ({img, data_publication, title}) =>{
     return<>
     <div className="card">
         <div className="card_img" style={cardStyle}></div>
-        <div className="data_publication"><small>{data_publication}</small></div>
+        <div className="data_create"><span>{created_at}</span></div>
         <div className="title">{title}</div>
     </div>
     </> 

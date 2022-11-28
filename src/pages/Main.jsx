@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import {Link} from "react-router-dom"
 import Advertising from "../components/Advertising";
 import AdvertisingMini from "../components/AdvertisingMini";
 import { Container, Row, Col} from "react-bootstrap";
@@ -8,7 +7,6 @@ import set from "../components/AdvertisingMini/img/img_set.png";
 import oil from "../components/AdvertisingMini/img/img_oil.png";
 import corn from "../components/AdvertisingMini/img/img_corn.png";
 import neck from "../components/AdvertisingMini/img/img_neck.png";
-import Api from "../Api"
 import Bestseller from "../components/Bestseller";
 import Goodies from "../components/Goodies";
 import Blog from "../components/Blog";
@@ -20,12 +18,11 @@ import Local from "../Local"
 
 
 
-export default({setFav, api}) => {
-    const [data,setData]=useState([]);
+export default({setFav, api2, api, data, user}) => {
+    const [dPrd,setDPrd]=useState([]);
     const [gds,setGds]=useState([]);
     const [bests, setBests] =useState([]);
-    const [user, setUser] = useState(Local.getItem("u"))
-    const [token, setToken]=useState(localStorage.getItem('token'));
+    
     // const [transform, setTransform] = useState(0);
     const [cnt1, setCnt1] = useState(1);
     const [transform1, setTransform1] = useState(0);
@@ -38,7 +35,7 @@ export default({setFav, api}) => {
     let widthScreen;
     
     
-   
+
 
     const text1 = ['Наборы','Микс масел','Рога \nсеверного \nоленя','Слипы из \n шеи индейки']
     const text2 = [`для дрессировке `,`пищевая здоровая \n натуральная добавка`,'от 10кг до 30кг','100% натуральное']
@@ -86,29 +83,17 @@ export default({setFav, api}) => {
     }
     
     useEffect(() =>{
-        api.getProducts()
+        api2.getProducts()
             .then(res => res.json())
             .then(data => {
-                setData(data.products)
+                setDPrd(data.products)
                 setBests(data.products.filter(g => g.likes.length>5))
-                setGds(data.products.sort((a, b) => {
-                    const nameA = a.name.toUpperCase(); 
-                    const nameB = b.name.toUpperCase(); 
-                    if (nameA < nameB) {
-                      return -1;
-                    }
-                    if (nameA > nameB) {
-                      return 1;
-                    }
-                  
-                    return 0;
-                  })
-                ) ;
+                setGds(data.products) ;
             })
         
-    }, [api])
+    }, [api2])
 
-    console.log("bests", bests, "gds", gds, "data", data);
+    console.log("bests", bests, "gds", gds, "dPrd", dPrd);
 
 
     return <>
@@ -123,7 +108,8 @@ export default({setFav, api}) => {
                 Всегда свежие лакомства ручной<br/>
                 работы с доставкой по России и Миру
             </p>
-            <button className="btn-catalog" style={btn}>Каталог</button>
+            <Link to="/catalog" ><button className="btn-catalog" style={btn}>Каталог</button></Link>
+            <h3> С глвной страници избрать любимые продукты невозможно. <br/>Это возможно только при регистрации в разделе каталог и избранное.</h3>
         </div>
     </div>
 
@@ -155,7 +141,7 @@ export default({setFav, api}) => {
                     }}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Bestseller transform={transform1} goods={gds} api={api} setFav={setFav} />
+                <Bestseller transform={transform1} goods={dPrd} api={api} setFav={setFav} />
             </Col>
             <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[0]} text2={text2[0]} 
@@ -185,7 +171,7 @@ export default({setFav, api}) => {
                 }}}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Goodies transform={transform2} bests={bests} api={api} setFav={setFav}/>
+                <Goodies transform={transform2} bests={bests} api2={api2} setFav={setFav}/>
             </Col>
             <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[2]} text2={text2[2] } 

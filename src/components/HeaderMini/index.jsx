@@ -112,7 +112,7 @@ export default({products, update, openPopup, user, setToken, setUser}) => {
                             <Row >
                                 <Col sm={12} style={{height: ``}}>
                                     <nav style={navContainer}>
-                                        {user &&< a href="">Избранное</a>}
+                                        {user && <Link to="/favourites">Избранное</Link>}
                                         {user && <Link to="/catalog">Каталог</Link>}
                                         {user && <Link to="/profile">Профиль</Link>} 
                                         {user && <a href=""onClick={logout}>Выход</a>}

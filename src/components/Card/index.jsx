@@ -59,11 +59,11 @@ const Card =({name, price, price_old, pictures, _id, likes, discount, api, setFa
                 <div className="addlike"  style={st} onClick={likeHandler}>
                     {like ? <span style={{color: "red"}}><HeartFill/></span> : <Heart/>}
                 </div>
-                <div className="show-detail"><span className={ discount ? "badge bg-danger rounded-pill" : "badge bg-transparent"}>
-                    {discount}</span></div>
+                <div className="show-detail"><span className={ discount ? "badge bg-danger rounded-pill" : " opacity-0 bg-transparent"}>
+                    {discount}%</span></div>
                 <div className="card__img" style = {cardStyle}></div>
                 <div className="old_price" style={{color: "red"}}>
-                    <small><del>{price_old}</del></small> 
+                    <small className={ discount ? "badge bg-succes rounded-pill" : " opacity-0 bg-transparent"}><del>{price_old}₽</del></small> 
                 </div>
                 <div className="new_price">{price} ₽</div>
                 <div className="description">{name}</div>

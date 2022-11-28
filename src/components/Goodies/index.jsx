@@ -3,7 +3,7 @@ import Card from "../Card";
 
 
 
-export default ({bests,transform, api, setFav}) =>{
+export default ({bests,transform, api2, setFav}) =>{
     
 
     const st={
@@ -28,7 +28,7 @@ export default ({bests,transform, api, setFav}) =>{
                     name={good.name.length > 23 ? good.name.slice(0,23) + "..." : good.name}
                     price_old={good.discount ? Math.floor(good.price - (good.discount *(good.price / 100))) : ""}
                     key={good._id}
-                    api={api}
+                    api2={api2}
                     setFav={setFav}
                     />
             )}

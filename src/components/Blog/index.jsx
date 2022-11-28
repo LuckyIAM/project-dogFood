@@ -21,12 +21,12 @@ export default ({data,transform}) =>{
                   
         <div className="bestseller-box" style={st}>
             {dataBlog.map((d,i) => 
-                    <BlogCard   
+                <BlogCard   
                     img={d.image}
-                    data_publication={d.created_at}
+                    created_at={d.created_at}
                     title={d.title}
                     key={i}
-                    />
+                />
             )}
         </div>
     )

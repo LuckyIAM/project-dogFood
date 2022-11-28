@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import Card from "../components/Card";
 
-export default ({goods, api, setFav}) => {
+export default ({goods, api, setFav, api2, products}) => {
      const [quantityProd, setQuantity] = useState(0)
 
     useEffect(()=>{
@@ -16,7 +16,13 @@ export default ({goods, api, setFav}) => {
             setQuantity(4);
         }
     }, [])   
-        
+        console.log(quantityProd);
+
+    const st = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    }
      const  stCardsContainer = {
         padding: "30px 10px",
         display: "grid",
@@ -26,16 +32,33 @@ export default ({goods, api, setFav}) => {
         alignText: "center",
         gap: "20px"
     }
-    return <div className="cards-container" style={stCardsContainer}>
-        {
-        goods.length > 0 ? 
-        goods.map((d,i) =><Card 
-        key = {i}
-        {...d}
-        api={api}
-        setFav={setFav}
-        />):
-        <h1 style={{gridColumnEnd: `soan ${quantityProd}`, textAlign: "center"}}>
-            Для отображение данных необходимо зайти</h1>}
+    const stWarningLike = {
+         width: "100vw"
+
+    }
+    
+    return <div className="cards-container" style={st}>
+        
+        {goods.length > 0 ? 
+        <div className="cards" style={stCardsContainer}>
+            {goods.map((d,i) =><Card 
+            key = {i}
+            {...d}
+            api={api}
+            setFav={setFav}
+            />)} 
+        </div>
+        :
+        <div className="wrapper">
+            <h2> Без регистрации, лайки не учитываются. Пожайлуста регистрируитесь!</h2>
+            <div className="cards" style={stCardsContainer}>
+                {products.map((d,i) => <Card 
+                key = {i}
+                {...d}
+                api2={api2}/>)}
+            </div>
+        </div>
+
+        }
     </div>
 }
