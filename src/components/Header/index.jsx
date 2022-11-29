@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom"
 import "./style.css";
 import Logo from "../Logo";
-import {BoxArrowInRight, BoxArrowLeft} from "react-bootstrap-icons";
+import {BoxArrowInRight, BoxArrowLeft, PlusCircle} from "react-bootstrap-icons";
 import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
@@ -38,6 +38,7 @@ export default({products, update, openPopup, user, setToken, setUser, like}) => 
             <input type="search" value={text} onChange={handler}/>
             <nav>
                 {user &&< Link to="/favourites"><FavIcon /><span>{like}</span></Link>}
+                {user && <Link to="add"><PlusCircle/></Link>}
                 {user && <Link to="/deleted"><CartIcon/></Link>}
                 {user && <Link to="/profile"><ProfileIcon/></Link>} 
                 {user && <a href=""onClick={logout}><BoxArrowLeft/></a>}

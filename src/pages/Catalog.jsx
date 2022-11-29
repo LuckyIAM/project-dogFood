@@ -1,8 +1,10 @@
 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import {Context} from "../App";
 import Card from "../components/Card";
 
-export default ({goods, api, setFav, api2, products}) => {
+export default ({api, setFav, api2}) => {
+    const {searchText, products ,goods } = useContext(Context);
      const [quantityProd, setQuantity] = useState(0)
 
     useEffect(()=>{

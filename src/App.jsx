@@ -14,9 +14,9 @@ import Local from "./Local";
 import Deleted from "./pages/Deleted"
 import HeaderMini from "./components/HeaderMini";
 import Favourit from "./pages/Favourit";
+import AddProduct from "./pages/AddProduct";
 
-
-// import {Col, Container, Row} from "react-bootstrap";
+const Context = React.createContext({});
 
 
 const App = () =>{
@@ -30,17 +30,18 @@ const App = () =>{
     const [fav, setFav] = useState([])
     const defaultToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjdhYTJiOGZkOTcyNTA2OTFhZGU5M2YiLCJpYXQiOjE2Njk2NDU2NjIsImV4cCI6MTcwMTE4MTY2Mn0.w5k0o5hA1dE7Ew2A6MoyWaG7C4pUpgnw8dA5SFR-DaY";
     const api2 = new Api(defaultToken);
-    const [products, setProducts] = useState([]);
     console.log("api2",api2);
+    const [products, setProducts] = useState([]);
+    const [searchText, search] = useState("=)")
     
-    useEffect(() =>{
-        api2.getProducts()
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data.products)
-            })
+    // useEffect(() =>{
+    //     api2.getProducts()
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setProducts(data.products)
+    //         })
 
-    }, [])
+    // }, [])
 
 
     useEffect(()=>{
@@ -72,6 +73,7 @@ const App = () =>{
     useEffect(()=>{
         let f = goods.filter(el => el.likes.includes(user._id))
         setFav(f);
+        setProducts(goods)
     }, [goods])
 
     useEffect(()=>{
@@ -81,7 +83,16 @@ const App = () =>{
 
     console.log("fav",fav, "\n del", del);
 
-    return <>
+    return <Context.Provider value={{
+        goods: goods,
+        setGoods: setGoods,
+        products:products,
+        searchText: searchText,
+        setProducts: setProducts,
+        search: function(){},
+        api: api
+
+        }}>
         <div className="wrapper"> 
             { screen.width < 768 ? <HeaderMini products={data} update={setGoods} openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
@@ -91,6 +102,7 @@ const App = () =>{
             }
             <Routes>
                 <Route path="/" element={<Main setFav={setFav} api2={api2} user={user} data={data}/>}/>
+                <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog goods={goods} setFav={setFav} api={api} api2={api2} products={products}/>}/>
                 <Route path="/product/:id" element={<Product api={api}/>}/>
@@ -104,7 +116,7 @@ const App = () =>{
         setToken={setToken} 
         api={api} 
         setUser={setUser} />}
-    </>
+    </Context.Provider>
 }
 
-export default App;
+export  {App, Context};
