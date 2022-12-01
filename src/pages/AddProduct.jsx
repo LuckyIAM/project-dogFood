@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react";
 import {Container, Row, Col, Form, Button, Image} from "react-bootstrap";
 import {Context} from "../App";
-import Api from "../Api";
+
 
 export default () =>{
     const {api, setGoods} = useContext(Context);
@@ -22,8 +22,8 @@ export default () =>{
             wight: inp5,
             description: inp6
         }
-    console.log(body);
-    }
+        console.log(body);
+    
     api.addProduct(body)
         .then(res => res.json())
         .then(data =>{
@@ -39,8 +39,7 @@ export default () =>{
                 setGoods(prev => [...prev, data]);
             }
         })
-    
-
+    }
     return <Container>
         <Row className="py-5">
             <Col xs={12}>
@@ -58,33 +57,33 @@ export default () =>{
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Цена товара</Form.Label>
-                        {/* <Form.Control type="number" value={inp3} onChange={e => setInp3(e.target.value)}></Form.Control> */}
-                        <Form.Select value={inp3} onChange={e => setInp3(e.target.value)}></Form.Select>
+                        <Form.Control type="number" value={inp3} onChange={e => setInp3(e.target.value)}></Form.Control>
+                    </Form.Group>
+                        <Form.Label>Процент скидки</Form.Label>
+                        <Form.Select value={inp4} onChange={e => setInp4(e.target.value)}>
                             <option value="0">Без скидки</option>
                             <option value="5">5%</option>
                             <option value="10">10%</option>
                             <option value="15">15%</option>
                             <option value="20">20%</option>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Процент скидки</Form.Label>
-                        <Form.Control type="number" value={inp4} onChange={e => setInp4(e.target.value)}></Form.Control>
-                    </Form.Group>
+                        </Form.Select>
                     <Form.Group>
                         <Form.Label>Вес</Form.Label>
                         <Form.Control type="text" value={inp5} onChange={e => setInp5(e.target.value)}></Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Опмсание</Form.Label>
+                        <Form.Label>Описание</Form.Label>
                         <Form.Control as="textarea" value={inp6} onChange={e => setInp6(e.target.value)}></Form.Control>
                     </Form.Group>
+                    <Button type="submit" className="btn-warning"> Добавить</Button>
                 </Form>
             </Col>
             <Col xs={6}>
                 {inp2 && <Image src={inp2} className="w-100"/>}
             </Col>
         </Row>
-        <Button type="submit" className="btn-warning"> Добавить</Button>
+        
     </Container>
 
 }
+

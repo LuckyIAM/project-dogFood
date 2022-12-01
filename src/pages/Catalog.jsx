@@ -3,9 +3,9 @@ import React, {useState, useEffect, useContext} from "react";
 import {Context} from "../App";
 import Card from "../components/Card";
 
-export default ({api, setFav, api2}) => {
-    const {searchText, products ,goods } = useContext(Context);
-     const [quantityProd, setQuantity] = useState(0)
+export default ({setFav}) => {
+    const {searchText, products ,goods} = useContext(Context);
+    const [quantityProd, setQuantity] = useState(0);
 
     useEffect(()=>{
         if (innerWidth < 340){
@@ -22,45 +22,39 @@ export default ({api, setFav, api2}) => {
 
     const st = {
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center"
     }
      const  stCardsContainer = {
-        padding: "30px 10px",
         display: "grid",
-        justifyContent: "center",
-        alignItems: "center",
         gridTemplateColumns: `repeat(${quantityProd}, 1fr)`,
-        alignText: "center",
         gap: "20px"
     }
     const stWarningLike = {
-         width: "100vw"
-
+        gridColumnEnd: `span ${quantityProd}`,  
+        width: "100vw"
     }
     
     return <div className="cards-container" style={st}>
-        
-        {goods.length > 0 ? 
-        <div className="cards" style={stCardsContainer}>
-            {goods.map((d,i) =><Card 
-            key = {i}
-            {...d}
-            api={api}
-            setFav={setFav}
-            />)} 
-        </div>
-        :
-        <div className="wrapper">
-            <h2> Без регистрации, лайки не учитываются. Пожайлуста регистрируитесь!</h2>
             <div className="cards" style={stCardsContainer}>
-                {products.map((d,i) => <Card 
+                { !searchText && goods.length > 0 && goods.map((d,i) =><Card 
                 key = {i}
                 {...d}
-                api2={api2}/>)}
+                setFav={setFav}
+                />)} 
             </div>
+            {searchText && <div className="show-length" style={stWarningLike}>
+                {products.length ?
+                <>По запросу <b>{searchText}</b> наидено {products.length} позиции</>
+                : <>По запросу <b>{searchText}</b> ничего не найдено</>}
+            </div>}
+            <div className="cards" style={stCardsContainer}>
+                {searchText && products.map((d,i) => <Card 
+                key = {i}
+                {...d}
+                setFav={setFav}/>)}
+            </div>
+            
         </div>
-
-        }
-    </div>
 }

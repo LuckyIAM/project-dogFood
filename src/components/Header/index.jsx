@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {Link} from "react-router-dom"
+import { Context } from "../../App";
 import "./style.css";
 import Logo from "../Logo";
 import {BoxArrowInRight, BoxArrowLeft, PlusCircle} from "react-bootstrap-icons";
@@ -10,19 +11,14 @@ import Card from "../Card";
 
 
 
-export default({products, update, openPopup, user, setToken, setUser, like}) => {
-    const [text,changeText] =useState('Пойск');
-    const [cnt, setCnt] = useState(0);
+export default({ openPopup, user, setToken, setUser, like}) => {
+    const {searchText, search, setProducts, goods} = useContext(Context)
     const handler = e=>{
-        changeText(e.target.value);
-        const result = products.filter(el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1);
+        search(e.target.value);
+        const result = goods.filter(el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1);
         console.log(result);
-        setCnt(result.length);
-        if(!text){
-            update(products);
-        }else{
-            update(result)
-        }
+        setProducts(result);
+        
     }
 
     const logout = e =>{
@@ -35,10 +31,10 @@ export default({products, update, openPopup, user, setToken, setUser, like}) => 
     return <>
         <header>
             <Logo/>
-            <input type="search" value={text} onChange={handler}/>
+            <input type="search" value={searchText} onChange={handler}/>
             <nav>
                 {user &&< Link to="/favourites"><FavIcon /><span>{like}</span></Link>}
-                {user && <Link to="add"><PlusCircle/></Link>}
+                {user && <Link to="add"><PlusCircle style={{fontSize: "23px"}}/></Link>}
                 {user && <Link to="/deleted"><CartIcon/></Link>}
                 {user && <Link to="/profile"><ProfileIcon/></Link>} 
                 {user && <a href=""onClick={logout}><BoxArrowLeft/></a>}
@@ -46,8 +42,5 @@ export default({products, update, openPopup, user, setToken, setUser, like}) => 
                     openPopup(true)}}><BoxArrowInRight style={{fontSize:"1.6rem"}}/></a>}
             </nav>
         </header>
-        <div style={{background : "var(--main-color)"}}>
-            {text ? `По запросу ${text} наидено ${cnt} позиции` : `Пойск ...`}
-        </div>
     </>
 }

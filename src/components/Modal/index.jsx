@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { Context } from "../../App";
 import {Form, Button} from "react-bootstrap";
 import {XCircle} from "react-bootstrap-icons"
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Local from "../../Local";
 
-export default ({isActive, changeActive, api, setToken, setUser}) =>{
+export default ({isActive, changeActive, setToken, setUser}) =>{
+    const {api}=useContext(Context); 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("")
     const handler = e =>{

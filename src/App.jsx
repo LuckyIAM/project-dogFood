@@ -32,18 +32,8 @@ const App = () =>{
     const api2 = new Api(defaultToken);
     console.log("api2",api2);
     const [products, setProducts] = useState([]);
-    const [searchText, search] = useState("=)")
+    const [searchText, search] = useState("")
     
-    // useEffect(() =>{
-    //     api2.getProducts()
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setProducts(data.products)
-    //         })
-
-    // }, [])
-
-
     useEffect(()=>{
         console.log("user is changed");
         setApi(new Api(token));
@@ -86,17 +76,18 @@ const App = () =>{
     return <Context.Provider value={{
         goods: goods,
         setGoods: setGoods,
-        products:products,
+        products:products, //филтрация поиска
         searchText: searchText,
         setProducts: setProducts,
-        search: function(){},
-        api: api
+        search: search,
+        api: api, 
+        setApi: setApi
 
         }}>
         <div className="wrapper"> 
             { screen.width < 768 ? <HeaderMini products={data} update={setGoods} openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
-            : <Header products={data} update={setGoods} openPopup =
+            : <Header openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}
             like = {fav.length}/>
             }
@@ -104,8 +95,8 @@ const App = () =>{
                 <Route path="/" element={<Main setFav={setFav} api2={api2} user={user} data={data}/>}/>
                 <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
-                <Route path="/catalog" element={<Catalog goods={goods} setFav={setFav} api={api} api2={api2} products={products}/>}/>
-                <Route path="/product/:id" element={<Product api={api}/>}/>
+                <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
+                <Route path="/product/:id" element={<Product/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
                 <Route path="/deleted" element ={<Deleted  del={del}/>}/>
             </Routes>

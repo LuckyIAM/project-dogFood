@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import {Context} from "../../App";
 import "./style.css"
 import {Link} from "react-router-dom";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import Local from "../../Local";
 
 
-const Card =({name, price, price_old, pictures, _id, likes, discount, api, setFav}) => {
+const Card =({name, price, price_old, pictures, _id, likes, discount, setFav}) => {
     const[like, setLike] = useState(false);
-
+    const {api}=useContext(Context);
     const st = {
         position: "absolute",
         right: "5px",

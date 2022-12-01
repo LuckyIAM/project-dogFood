@@ -1,29 +1,24 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
 import {Link} from "react-router-dom"
+import { Context } from "../../App";
 import "./style.css";
 import Logo from "../Logo";
-import Profile from "../../pages/Profile"
 import {Container, Row, Col} from "react-bootstrap";
 
 
 
 
-export default({products, update, openPopup, user, setToken, setUser}) => {
-    const [text,changeText] =useState('Пойск');
-    const [cnt, setCnt] = useState(0);
-    const [trnsfrm, setTrnsfrm] = useState(-185);
+export default({openPopup, user, setToken, setUser}) => {
+    const {searchText, search, setProducts, goods} = useContext(Context)
+    const [trnsfrm, setTrnsfrm] = useState(-235);
     const [clck, setClck] = useState(1);
 
     const handler = e=>{
-        changeText(e.target.value);
-        const result = products.filter(el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1);
+        search(e.target.value);
+        const result = goods.filter(el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1);
         console.log(result);
-        setCnt(result.length);
-        if(!text){
-            update(products);
-        }else{
-            update(result)
-        }
+        setProducts(result);
+
     }
 
     const logout = e =>{
@@ -34,10 +29,9 @@ export default({products, update, openPopup, user, setToken, setUser}) => {
         setUser({});
     }
     const navBarSlide = (e) => {
-        console.log(e.type, trnsfrm);
         if(clck % 2 === 0){
             setClck(clck +1);
-            setTrnsfrm(-185);
+            setTrnsfrm(-235);
         }else {
             setClck(clck +1);
             setTrnsfrm(0);
@@ -78,7 +72,7 @@ export default({products, update, openPopup, user, setToken, setUser}) => {
 
     const stSlideBar = {
         width: "70vw",
-        height: `${200 + trnsfrm}px`,
+        height: `${250 + trnsfrm}px`,
         transition: "1s transform ease-out, 1s height ease-out ",
         transform: `translateY(${trnsfrm}px)`,
 
@@ -94,7 +88,7 @@ export default({products, update, openPopup, user, setToken, setUser}) => {
         <header style={stHeader}>
             <div className="nav-wrapper" style={stNavWrapper}>
                 <Logo/>
-                <input type="search" value={text} onChange={handler} style={inputSize}/>
+                <input type="search" value={searchText} onChange={handler} style={inputSize}/>
                 <nav className="navbar" >
                     <div className="container-fluid">
                         <button className="navbar-icon" onClick={navBarSlide}>
@@ -103,9 +97,7 @@ export default({products, update, openPopup, user, setToken, setUser}) => {
                     </div>
                 </nav>
             </div>
-            <div style={{background : "var(--main-color)", zIndex: 2, width: "100%", padding: "0 10px"}}>
-                {text ? `По запросу ${text} наидено ${cnt} позиции` : `Пойск ...`}
-            </div>
+           
             <div className="slide-bar" style={stSlideBar}>
                     <div className="wrapper" style={wrappSlideBar}>
                         <Container >
@@ -113,6 +105,7 @@ export default({products, update, openPopup, user, setToken, setUser}) => {
                                 <Col sm={12} style={{height: ``}}>
                                     <nav style={navContainer}>
                                         {user && <Link to="/favourites">Избранное</Link>}
+                                        {user && <Link to="/add">Добавить товар</Link>}
                                         {user && <Link to="/catalog">Каталог</Link>}
                                         {user && <Link to="/profile">Профиль</Link>} 
                                         {user && <a href=""onClick={logout}>Выход</a>}
