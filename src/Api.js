@@ -34,7 +34,7 @@ class Api{
     updProduct(productId, body){
         return(
             fetch(`${this.path}/products/${productId}`,{
-                method: "PATH",
+                method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${this.token}`,
                     "Content-Type": "application/json",

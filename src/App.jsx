@@ -15,6 +15,7 @@ import Deleted from "./pages/Deleted"
 import HeaderMini from "./components/HeaderMini";
 import Favourit from "./pages/Favourit";
 import AddProduct from "./pages/AddProduct";
+import Single from "./pages/Single";
 
 const Context = React.createContext({});
 
@@ -96,7 +97,8 @@ const App = () =>{
                 <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
-                <Route path="/product/:id" element={<Product/>}/>
+                {/* <Route path="/product/:id" element={<Product/>}/> */}
+                <Route path="/product/:id" element={<Single/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
                 <Route path="/deleted" element ={<Deleted  del={del}/>}/>
             </Routes>
