@@ -16,25 +16,39 @@ import HeaderMini from "./components/HeaderMini";
 import Favourit from "./pages/Favourit";
 import AddProduct from "./pages/AddProduct";
 import Single from "./pages/Single";
+import Warning from "./components/Warning";
 
 const Context = React.createContext({});
 
 
 const App = () =>{
     const [goods,setGoods] = useState([]);
-    const [data, setData] = useState([]);
     const [del, setDel] = useState([]);
-    const [token, setToken] = useState(Local.getItem("shop-user"));
-    const [user, setUser] = useState(Local.getItem("u", true))
+    const [token, setToken] = useState(Local.getItem("token-user"));
+    const [user, setUser] = useState(Local.getItem("user", true))
     const [popupActive, changePopupActive]=useState(false)
     const [api, setApi] = useState(new Api(token));
-    const [fav, setFav] = useState([])
+    const [fav, setFav] = useState([]);
     const defaultToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjdhYTJiOGZkOTcyNTA2OTFhZGU5M2YiLCJpYXQiOjE2Njk2NDU2NjIsImV4cCI6MTcwMTE4MTY2Mn0.w5k0o5hA1dE7Ew2A6MoyWaG7C4pUpgnw8dA5SFR-DaY";
     const api2 = new Api(defaultToken);
-    console.log("api2",api2);
     const [products, setProducts] = useState([]);
-    const [searchText, search] = useState("")
+    const [searchText, search] = useState("");
+    const [succes, setSucces] = useState(false);
+    const [textContent, setTextContent] = useState('');
+    const [widthScreen, setWidthScreen] = useState();
     
+    useEffect(()=>{
+        if (innerWidth < 340){
+            setWidthScreen(1);
+        }else if (innerWidth >= 500 && innerWidth < 780){
+            setWidthScreen(2);
+        }else if (innerWidth >= 780 && innerWidth < 1050){
+            setWidthScreen(3);
+        }else if (innerWidth >= 1050){
+            setWidthScreen(4);
+        }
+    }, []) 
+
     useEffect(()=>{
         console.log("user is changed");
         setApi(new Api(token));
@@ -47,7 +61,6 @@ const App = () =>{
             .then(res =>res.json())
             .then(data =>{
                 setGoods(data.products);
-                setData(data.products)
             })
             api.showProfile()
                 .then(result => result)
@@ -55,8 +68,13 @@ const App = () =>{
                     console.log("user", data);
                 })
         }else{
-            setGoods([]);
-            setData([])
+            localStorage.removeItem("token-user");
+            localStorage.removeItem("user");
+            api2.getProducts()
+            .then(res =>res.json())
+            .then(data =>{
+                setGoods(data.products);
+            })
         }
         
     }, [api])
@@ -75,6 +93,7 @@ const App = () =>{
     console.log("fav",fav, "\n del", del);
 
     return <Context.Provider value={{
+        widthScreen: widthScreen,
         goods: goods,
         setGoods: setGoods,
         products:products, //филтрация поиска
@@ -93,7 +112,7 @@ const App = () =>{
             like = {fav.length}/>
             }
             <Routes>
-                <Route path="/" element={<Main setFav={setFav} api2={api2} user={user} data={data}/>}/>
+                <Route path="/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
                 <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
@@ -102,13 +121,20 @@ const App = () =>{
                 <Route path="/profile" element={<Profile user={user}/>}/>
                 <Route path="/deleted" element ={<Deleted  del={del}/>}/>
             </Routes>
-           {screen.width < 768 ? <FooterMini user={user} like = {fav.length}/> :<Footer/>}
+           {screen.width < 768 ? <FooterMini user={user} like = {fav.length}/> :<Footer user={user} like = {fav.length}/>}
         </div>
-        {!token &&<Modal isActive={popupActive}
+        {!token && <Modal isActive={popupActive}
         changeActive={changePopupActive} 
         setToken={setToken} 
         api={api} 
-        setUser={setUser} />}
+        setUser={setUser}
+        setSucces={setSucces} 
+        textContent={textContent}
+        setTextContent={setTextContent} />}
+        {succes && <Warning succes={succes} 
+        setSucces={setSucces} 
+        textContent={textContent}
+        setTextContent={setTextContent} />}
     </Context.Provider>
 }
 

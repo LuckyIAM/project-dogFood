@@ -1,0 +1,34 @@
+.popup-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0003;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.popup-container.active{
+    display: flex;
+}
+.popup-container >.popup{
+    width: 70%;
+    background-color: #fff;
+    color: rgb(202, 4, 4);
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.popup-container >.popup-close{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    color: #000;
+    cursor: pointer;
+}
+.popup-container .popup h2 span{
+    font-size: 50px;
+}

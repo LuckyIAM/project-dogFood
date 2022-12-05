@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../App";
 import {Link} from "react-router-dom"
 import Advertising from "../components/Advertising";
 import AdvertisingMini from "../components/AdvertisingMini";
@@ -7,23 +8,19 @@ import set from "../components/AdvertisingMini/img/img_set.png";
 import oil from "../components/AdvertisingMini/img/img_oil.png";
 import corn from "../components/AdvertisingMini/img/img_corn.png";
 import neck from "../components/AdvertisingMini/img/img_neck.png";
-import Bestseller from "../components/Bestseller";
-import Goodies from "../components/Goodies";
+import Carousel from "../components/Сarousel";
 import Blog from "../components/Blog";
-import { ArrowLeftCircle, ArrowRightCircle } from "react-bootstrap-icons";
+import { ArrowLeftCircle, ArrowRightCircle, ChevronRight } from "react-bootstrap-icons";
 import dataBlog from "../assets/dataBlog.json"
 import dataFavourit from "../assets/dataFavourit.json"
-import YouWatched from "../components/YouWatched";
-import Local from "../Local"
 
 
 
-export default({setFav, api2, api, data, user}) => {
-    const [dPrd,setDPrd]=useState([]);
+
+export default({setFav, goods}) => {
+    const {widthScreen} = useContext(Context);
     const [gds,setGds]=useState([]);
     const [bests, setBests] =useState([]);
-    
-    // const [transform, setTransform] = useState(0);
     const [cnt1, setCnt1] = useState(1);
     const [transform1, setTransform1] = useState(0);
     const [cnt2, setCnt2] = useState(1);
@@ -32,10 +29,6 @@ export default({setFav, api2, api, data, user}) => {
     const [transform3, setTransform3] = useState(0);
     const [cnt4, setCnt4] = useState(1);
     const [transform4, setTransform4] = useState(0);
-    let widthScreen;
-    
-    
-
 
     const text1 = ['Наборы','Микс масел','Рога \nсеверного \nоленя','Слипы из \n шеи индейки']
     const text2 = [`для дрессировке `,`пищевая здоровая \n натуральная добавка`,'от 10кг до 30кг','100% натуральное']
@@ -74,27 +67,11 @@ export default({setFav, api2, api, data, user}) => {
         margin: "50px 0px"
     }
 
-    if(window.screen.width>=1200){
-        widthScreen = 4;
-    }else if(window.screen.width>550 && window.screen.width<1200){
-        widthScreen = 2;
-    }else if(window.screen.width<=550){
-        widthScreen = 1;
-    }
     
     useEffect(() =>{
-        api2.getProducts()
-            .then(res => res.json())
-            .then(data => {
-                setDPrd(data.products)
-                setBests(data.products.filter(g => g.likes.length>5))
-                setGds(data.products) ;
-            })
-        
-    }, [api2])
-
-    console.log("bests", bests, "gds", gds, "dPrd", dPrd);
-
+        setBests(goods.filter(g => g.likes.length>5));
+        setGds(goods) ;   
+    }, [goods])
 
     return <>
     <div className="title-box" style={title}>    
@@ -108,7 +85,7 @@ export default({setFav, api2, api, data, user}) => {
                 Всегда свежие лакомства ручной<br/>
                 работы с доставкой по России и Миру
             </p>
-            <Link to="/catalog" ><button className="btn-catalog" style={btn}>Каталог</button></Link>
+            <Link to="/catalog" ><button className="btn-catalog" style={btn}>Каталог<ChevronRight/></button></Link>
             <h3> С глвной страници избрать любимые продукты невозможно. <br/>Это возможно только при регистрации в разделе каталог и избранное.</h3>
         </div>
     </div>
@@ -141,7 +118,7 @@ export default({setFav, api2, api, data, user}) => {
                     }}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Bestseller transform={transform1} goods={dPrd} api={api} setFav={setFav} />
+                <Carousel transform={transform1} goods={gds} setFav={setFav} />
             </Col>
             <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[0]} text2={text2[0]} 
@@ -171,7 +148,7 @@ export default({setFav, api2, api, data, user}) => {
                 }}}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <Goodies transform={transform2} bests={bests} api2={api2} setFav={setFav}/>
+                <Carousel transform={transform2} goods={bests}  setFav={setFav}/>
             </Col>
             <Col md={6} xs={12} style={{marginTop: "20px"}}>
                 <AdvertisingMini text1={text1[2]} text2={text2[2] } 
@@ -226,7 +203,7 @@ export default({setFav, api2, api, data, user}) => {
                     }}}/> 
             </Col>
             <Col md={12} xs={12} style={stCarousel}>
-                <YouWatched transform={transform4} data={dataFavourit} />
+                <Carousel transform={transform4} goods={dataFavourit} />
             </Col>
         </Row>
     </Container>

@@ -23,8 +23,8 @@ export default({openPopup, user, setToken, setUser}) => {
 
     const logout = e =>{
         e.preventDefault();
-        localStorage.removeItem("shop-user");
-        localStorage.removeItem("u");
+        localStorage.removeItem("token-user");
+        localStorage.removeItem("user");
         setToken("");
         setUser({});
     }

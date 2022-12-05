@@ -7,7 +7,6 @@ import {BoxArrowInRight, BoxArrowLeft, PlusCircle} from "react-bootstrap-icons";
 import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
-import Card from "../Card";
 
 
 
@@ -16,7 +15,6 @@ export default({ openPopup, user, setToken, setUser, like}) => {
     const handler = e=>{
         search(e.target.value);
         const result = goods.filter(el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1);
-        console.log(result);
         setProducts(result);
         
     }
@@ -38,8 +36,11 @@ export default({ openPopup, user, setToken, setUser, like}) => {
                 {user && <Link to="/deleted"><CartIcon/></Link>}
                 {user && <Link to="/profile"><ProfileIcon/></Link>} 
                 {user && <a href=""onClick={logout}><BoxArrowLeft/></a>}
-                {!user && <a href=""onClick={e => {e.preventDefault(); 
-                    openPopup(true)}}><BoxArrowInRight style={{fontSize:"1.6rem"}}/></a>}
+                {!user && <a href=""
+                onClick={e => {
+                    e.preventDefault(); 
+                    openPopup(true);
+                    }}><BoxArrowInRight style={{fontSize:"1.6rem"}}/></a>}
             </nav>
         </header>
     </>

@@ -3,8 +3,7 @@ import Card from "../Card";
 
 
 
-export default ({goods,transform, api, setFav}) =>{
-
+export default ({goods, transform, setFav}) =>{
     const st={
         width: `${goods.length * 280}px`,
         height: "400px",
@@ -14,12 +13,11 @@ export default ({goods,transform, api, setFav}) =>{
         transition: "2s transform ease-out",
         transform: `translateX(${transform}px)`
     }
-    console.log(st.width);
+    
     const stDiscount = {
         display: "none"
     }
-    
-    
+
 
     return(
                   
@@ -31,7 +29,6 @@ export default ({goods,transform, api, setFav}) =>{
                     name={good.name.length > 23 ? good.name.slice(0,23) + "..." : good.name}
                     price_old={good.discount ? Math.floor(good.price - (good.discount *(good.price / 100))) : ""}
                     key={good._id}
-                    api={api}
                     setFav={setFav}
                     />
             )}
