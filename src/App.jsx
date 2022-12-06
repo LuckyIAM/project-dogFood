@@ -1,22 +1,27 @@
 import React, {useState, useEffect} from "react";
 import {Routes, Route} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import Product from "./pages/Product";
 import Catalog from "./pages/Catalog"
 import Main from "./pages/Main"
 import Profile from "./pages/Profile"
+import Favourit from "./pages/Favourit";
+import AddProduct from "./pages/AddProduct";
+import Single from "./pages/Single";
+import Deleted from "./pages/Deleted"
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FooterMini from "./components/FooterMini";
 import Modal from "./components/Modal";
+import HeaderMini from "./components/HeaderMini";
+import Warning from "./components/Warning";
+
 import Api from "./Api.js";
 import Local from "./Local";
-import Deleted from "./pages/Deleted"
-import HeaderMini from "./components/HeaderMini";
-import Favourit from "./pages/Favourit";
-import AddProduct from "./pages/AddProduct";
-import Single from "./pages/Single";
-import Warning from "./components/Warning";
+
+
 
 const Context = React.createContext({});
 
@@ -26,6 +31,7 @@ const App = () =>{
     const [del, setDel] = useState([]);
     const [token, setToken] = useState(Local.getItem("token-user"));
     const [user, setUser] = useState(Local.getItem("user", true))
+    const [userId, setUserId] = useState("627aa2b8fd97250691ade93f");
     const [popupActive, changePopupActive]=useState(false)
     const [api, setApi] = useState(new Api(token));
     const [fav, setFav] = useState([]);
@@ -36,6 +42,7 @@ const App = () =>{
     const [succes, setSucces] = useState(false);
     const [textContent, setTextContent] = useState('');
     const [widthScreen, setWidthScreen] = useState();
+    const[product, setProduct]= useState({});
     
     useEffect(()=>{
         if (innerWidth < 340){
@@ -60,6 +67,7 @@ const App = () =>{
             api.getProducts()
             .then(res =>res.json())
             .then(data =>{
+                setUserId(user._id)
                 setGoods(data.products);
             })
             api.showProfile()
@@ -73,10 +81,11 @@ const App = () =>{
             api2.getProducts()
             .then(res =>res.json())
             .then(data =>{
+                setUserId("627aa2b8fd97250691ade93f")
                 setGoods(data.products);
             })
         }
-        
+    
     }, [api])
     
     useEffect(()=>{
@@ -90,7 +99,6 @@ const App = () =>{
         setDel(d)
     }, [goods])
 
-    console.log("fav",fav, "\n del", del);
 
     return <Context.Provider value={{
         widthScreen: widthScreen,
@@ -101,8 +109,9 @@ const App = () =>{
         setProducts: setProducts,
         search: search,
         api: api, 
-        setApi: setApi
-
+        setApi: setApi,
+        api2: api2, 
+        token: token
         }}>
         <div className="wrapper"> 
             { screen.width < 768 ? <HeaderMini products={data} update={setGoods} openPopup =
@@ -117,7 +126,8 @@ const App = () =>{
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
                 {/* <Route path="/product/:id" element={<Product/>}/> */}
-                <Route path="/product/:id" element={<Single/>}/>
+                <Route path="/product/:id" element={token ? 
+                <Single user={user} userId={userId}/> : <Product/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
                 <Route path="/deleted" element ={<Deleted  del={del}/>}/>
             </Routes>
@@ -134,7 +144,8 @@ const App = () =>{
         {succes && <Warning succes={succes} 
         setSucces={setSucces} 
         textContent={textContent}
-        setTextContent={setTextContent} />}
+        setTextContent={setTextContent}
+        setUserId={setUserId} />}
     </Context.Provider>
 }
 

@@ -5,7 +5,7 @@ import {XCircle} from "react-bootstrap-icons"
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Local from "../../Local";
-import Warning from "../Warning";
+
 
 export default ({isActive, changeActive, setToken, setUser, setSucces, setTextContent}) =>{
     const {api}=useContext(Context); 

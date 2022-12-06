@@ -4,7 +4,6 @@ import { House, Stack } from "react-bootstrap-icons";
 import {ReactComponent as FavIcon} from "../Header/img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "../Header/img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "../Header/img/ic-profile.svg";
-import Logo from "../Logo";
 import "./style.css";
 
 export default({user, like})=>{

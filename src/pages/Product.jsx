@@ -1,22 +1,28 @@
 import React,{useState, useEffect, useContext} from "react";
 import { Context } from "../App";
 import {useParams} from "react-router-dom";
-import data from "../assets/data.json";
 import { Container, Row, Col, Figure, Table, ButtonGroup, Button, Alert } from "react-bootstrap";
 import {Truck} from "react-bootstrap-icons";
 export default() => {
-    const {api} = useContext(Context);
+    const {api, api2, token} = useContext(Context);
     const[product, setProduct]= useState({});
     const [cnt, setCnt] = useState(0);
     let params = useParams();
     useEffect(()=>{
-        api.getProduct(params.id)
-        .then(res => res.json())
-        .then(data => {
-            // console.log(data);
-            setProduct(data)
-        })
-    })
+        if(token){
+            api.getProduct(params.id)
+            .then(res => res.json())
+            .then(data => {
+                setProduct(data)
+            })
+        }else{
+            api2.getProduct(params.id)
+            .then(res => res.json())
+            .then(data => {
+                setProduct(data) 
+            })    
+        }
+    },[api, api2])
 
     return <Container>
         {product._id &&

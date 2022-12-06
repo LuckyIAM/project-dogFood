@@ -2,24 +2,14 @@
 import React, {useState, useEffect, useContext} from "react";
 import {Context} from "../App";
 import Card from "../components/Card";
+import usePagination from "../hooks/usePagination";
+import Pagination from "../components/Pagination";
 
 export default ({setFav}) => {
-    const {searchText, products ,goods} = useContext(Context);
-    const [quantityProd, setQuantity] = useState(0);
+    const {searchText, products ,goods, widthScreen} = useContext(Context);
+    const paginate = usePagination(products, 4)
 
-    useEffect(()=>{
-        if (innerWidth < 340){
-            setQuantity(1);
-        }else if (innerWidth >= 500 && innerWidth < 780){
-            setQuantity(2);
-        }else if (innerWidth >= 780 && innerWidth < 1050){
-            setQuantity(3);
-        }else if (innerWidth >= 1050){
-            setQuantity(4);
-        }
-    }, [])   
-        console.log(quantityProd);
-
+    
     const st = {
         display: "flex",
         flexDirection: "column",
@@ -28,15 +18,15 @@ export default ({setFav}) => {
     }
      const  stCardsContainer = {
         display: "grid",
-        gridTemplateColumns: `repeat(${quantityProd}, 1fr)`,
+        gridTemplateColumns: `repeat(${widthScreen}, 1fr)`,
         gap: "20px"
     }
     const stWarningLike = {
-        gridColumnEnd: `span ${quantityProd}`,  
+        gridColumnEnd: `span ${widthScreen}`,  
         width: "100vw"
     }
     
-    return <div className="cards-container" style={st}>
+    return <><div className="cards-container" style={st}>
             <div className="cards" style={stCardsContainer}>
                 { !searchText && goods.length > 0 && goods.map((d,i) =><Card 
                 key = {i}
@@ -57,4 +47,10 @@ export default ({setFav}) => {
             </div>
             
         </div>
+        <div>
+            <button onClick={() => {paginate.prev()}}>&lt;</button>
+            <button onClick={() => {paginate.next()}}>&gt;</button>
+        </div>
+        <Pagination cnt={paginate.maxPage}/>
+        </>
 }

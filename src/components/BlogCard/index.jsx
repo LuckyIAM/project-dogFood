@@ -3,10 +3,6 @@ import "./style.css";
 
 
 const BlogCard = ({img, created_at, title}) =>{
-    const[data, setData] = useState([]);
-    const [token, setToken] = useState(localStorage.getItem("token"));
-    let [cnt, setCnt] = useState(0);
-     
 
     const cardStyle = {backgroundImage: `url(${img})`}
     
