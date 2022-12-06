@@ -51,6 +51,6 @@ export default ({setFav}) => {
             <button onClick={() => {paginate.prev()}}>&lt;</button>
             <button onClick={() => {paginate.next()}}>&gt;</button>
         </div>
-        <Pagination cnt={paginate.maxPage}/>
+        <Pagination hook={paginate}/>
         </>
 }

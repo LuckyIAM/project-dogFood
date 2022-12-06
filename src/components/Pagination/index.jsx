@@ -1,21 +1,21 @@
 import React, {useState, useEffect} from "react";
 
-export default ({cnt}) =>{
+export default ({hook}) =>{
     const [pages, setPages] = useState([]);
 
     useEffect(() => {
         const arr = [];
-        for(let i = 0; i <= cnt; i++){
+        for(let i = 1; i <= hook.maxPage; i++){
             arr.push(i);
         }
         setPages(arr);
-    },[])
+    },[hook])
 
     return <div className="pagination">
-        <button>&lt;</button>
+        <button onClick={hook.prev}>&lt;</button>
         {pages.map(p => {
-            <button key ={p} onClick={() => {console.log(p);}}></button>
+            return <button key ={p} onClick={() => {hook.change(p)}}>{p}</button>
         })}
-        <button>&gt;</button>
+        <button onClick={hook.next}>&gt;</button>
     </div>
 }

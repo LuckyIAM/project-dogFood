@@ -23,6 +23,7 @@ export default (data, cnt) =>{
 
     const change = (p) => {
         setPage(Math.max(1, Math.min(p,maxPage)))
+        console.log(page);
     }
 
     return {next, prev, change, maxPage};
