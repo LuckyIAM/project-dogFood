@@ -125,20 +125,19 @@ const App = () =>{
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
             : <Header openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}
-            like = {fav.length} basketLen={basket.length} />
+            like = {fav.length} basketLen={basket.lenght} />
             }
             <Routes>
-                <Route path="/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
+                <Route path="/project-dogFood/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
                 <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
-                {/* <Route path="/product/:id" element={<Product/>}/> */}
                 <Route path="/product/:id" element={token ? 
                 <Single user={user} userId={userId} idAuthor={idAuthor} setIdAuthor={setIdAuthor}/> : <Product />}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
                 <Route path="/basket" element ={<Basket  basket={basket} setBasket={setBasket}/>}/>
             </Routes>
-           {screen.width < 768 ? <FooterMini user={user} like = {fav.length} basketLen={basket.length}/> :<Footer user={user} like = {fav.length}/>}
+           {screen.width < 768 ? <FooterMini user={user} like = {fav.length} basketLen={basket.lenght}/> :<Footer user={user} like = {fav.length}/>}
         </div>
         {!token && <Modal isActive={popupActive}
         changeActive={changePopupActive} 

@@ -59,6 +59,10 @@ export default ({api, setFav}) => {
         padding: "15px",
         gap: "15px"
     }
+    const deliverySt = {
+        position: "relative", 
+        top: "100px"
+    }
     
 
     return <>{ basket.length>0 && token?
@@ -115,7 +119,7 @@ export default ({api, setFav}) => {
                         </div>
                         <button className="btn position-relative top-40 start-0 w-100">Оформить заказ</button>
                     </div>
-                    <div className="delivery bg-light p-4 mt-5 rounded-4">
+                    <div className="delivery bg-light p-4 rounded-4" style={deliverySt}>
                         <Row>
                             <Col md={2}>
                                 <Truck className="fw-bolder fs-3"/>
