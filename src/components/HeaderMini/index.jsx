@@ -10,7 +10,7 @@ import {Container, Row, Col} from "react-bootstrap";
 
 export default({openPopup, user, setToken, setUser}) => {
     const {searchText, search, setProducts, goods} = useContext(Context)
-    const [trnsfrm, setTrnsfrm] = useState(-235);
+    const [trnsfrm, setTrnsfrm] = useState(-285);
     const [clck, setClck] = useState(1);
 
     const handler = e=>{
@@ -31,7 +31,7 @@ export default({openPopup, user, setToken, setUser}) => {
     const navBarSlide = (e) => {
         if(clck % 2 === 0){
             setClck(clck +1);
-            setTrnsfrm(-235);
+            setTrnsfrm(-285);
         }else {
             setClck(clck +1);
             setTrnsfrm(0);
@@ -72,7 +72,7 @@ export default({openPopup, user, setToken, setUser}) => {
 
     const stSlideBar = {
         width: "70vw",
-        height: `${250 + trnsfrm}px`,
+        height: `${290 + trnsfrm}px`,
         transition: "1s transform ease-out, 1s height ease-out ",
         transform: `translateY(${trnsfrm}px)`,
 
@@ -107,6 +107,7 @@ export default({openPopup, user, setToken, setUser}) => {
                                         {user && <Link to="/favourites">Избранное</Link>}
                                         {user && <Link to="/add">Добавить товар</Link>}
                                         {user && <Link to="/catalog">Каталог</Link>}
+                                        {user && <Link to="/basket">Корзина</Link>}
                                         {user && <Link to="/profile">Профиль</Link>} 
                                         {user && <a href=""onClick={logout}>Выход</a>}
                                         {!user && <a href=""onClick={e => {e.preventDefault(); 

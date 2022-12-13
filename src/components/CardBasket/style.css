@@ -1,0 +1,27 @@
+.card-basket{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.p{
+    margin: "10px 20px";
+}
+.row-direction{
+    display: flex;
+}
+.col-direction{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 700;
+}
+.col-direction-width{
+    width: 60px;   
+}
+.col-direction .wight {
+    color: #888;
+    font-size: 18px;
+    font-weight: normal;
+}
+

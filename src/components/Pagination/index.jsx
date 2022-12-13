@@ -12,10 +12,11 @@ export default ({hook}) =>{
     },[hook])
 
     return <div className="pagination">
-        <button onClick={hook.prev}>&lt;</button>
+        <button onClick={hook.prev} disabled={hook.page === 1}>&lt;</button>
         {pages.map(p => {
-            return <button key ={p} onClick={() => {hook.change(p)}}>{p}</button>
+            return <button key ={p} onClick={() => {hook.change(p)}}
+            style={{background: hook.page === p ? "var(--main-color)" : "initial"}}>{p}</button>
         })}
-        <button onClick={hook.next}>&gt;</button>
+        <button onClick={hook.next} disabled={hook.page === hook.maxPage}>&gt;</button>
     </div>
 }

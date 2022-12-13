@@ -6,7 +6,14 @@ import {ReactComponent as CartIcon} from "../Header/img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "../Header/img/ic-profile.svg";
 import "./style.css";
 
-export default({user, like})=>{
+
+export default({user, like, basketLen})=>{
+    const badgeSt = {
+        height: "20px", 
+        position: "relative",
+        top: "0px",
+        left: "-20px"
+    }
     return(
         
         <div className="wrapper_footer">
@@ -32,15 +39,20 @@ export default({user, like})=>{
                         <Stack style={{transform: "rotate(90deg)"}}/>
                         <span>Каталог</span>
                     </Link>
-                    {user && <Link to="/deleted" className="colum-direction">
+                    {user && <div className="row-direction">
+                    <Link to="/basket" className="colum-direction">
                         <CartIcon/>
                         <span>Корзина</span>
-                    </Link>}
-                    {user && <Link to="/favourites" className="colum-direction">
+                    </Link>
+                    <sup className="badge bg-success rounded-pill mh-1" style={badgeSt}>{basketLen}</sup>
+                    </div>}
+                    {user && <div className="row-direction">
+                    <Link to="/favourites" className="colum-direction">
                         <FavIcon />
                         <span>Избранное</span>
-                    </Link>}
-                    <small className="tiket">{like}</small>
+                    </Link>
+                    <sup className="badge bg-success rounded-pill mh-1" style={badgeSt}>{like}</sup>
+                    </div>}
                     {user && <Link to="/profile" className="colum-direction clouse">
                         <ProfileIcon/>
                         <span>Профиль</span>

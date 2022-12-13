@@ -22,9 +22,15 @@ export default (data, cnt) =>{
     }
 
     const change = (p) => {
-        setPage(Math.max(1, Math.min(p,maxPage)))
-        console.log(page);
+        let newPage = Math.max(1, Math.min(p,maxPage))
+        setPage(newPage);
+        console.log(newPage);
     }
 
-    return {next, prev, change, maxPage};
+    const pageData = () => {
+        const start =  (page - 1) * cnt;
+        const end = start + cnt;
+        return data.slice(start,end)
+    }
+    return {next, prev, change, maxPage, page, pageData};
 }

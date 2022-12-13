@@ -3,11 +3,18 @@ import { Context } from "../App";
 import {useParams} from "react-router-dom";
 import { Container, Row, Col, Figure, Table, ButtonGroup, Button, Alert } from "react-bootstrap";
 import {Truck} from "react-bootstrap-icons";
+import { addToBasket } from "../Function";
+
 export default() => {
-    const {api, api2, token} = useContext(Context);
+    const {api, api2, token, goods, idProduct, setIdProduct, basket, setBasket} = useContext(Context);
     const[product, setProduct]= useState({});
     const [cnt, setCnt] = useState(0);
+    const [_id, set_Id] = useState("");
     let params = useParams();
+    useEffect(()=>{
+        set_Id(params.id)
+    },[basket])
+
     useEffect(()=>{
         if(token){
             api.getProduct(params.id)
@@ -23,6 +30,7 @@ export default() => {
             })    
         }
     },[api, api2])
+
 
     return <Container>
         {product._id &&
@@ -50,7 +58,12 @@ export default() => {
                         </ButtonGroup>
                     </Col>
                     <Col md={6}>
-                        <Button size = "sm" variant="warning">В корзину</Button>
+                        <Button size = "sm" variant="warning" 
+                        onClick={e =>{
+                            e.stopPropagation();
+                            e.preventDefault();
+                            addToBasket(goods, _id, idProduct, setIdProduct, basket, setBasket)
+                            }}>В корзину</Button>
                     </Col>
                     </Row>
                     <Alert variant="secondary" className="mt-3">

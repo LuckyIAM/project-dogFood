@@ -1,37 +1,29 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../App"; 
+import Alternative from "../components/Alternative";
 import Card from "../components/Card";
 
 
 
-export default ({goods, setFav,api}) => {
-    let wdth ;
-    
 
-    
-    if (innerWidth < 340){
-        wdth=1;
-    }else if (innerWidth >= 500 && innerWidth < 780){
-        wdth=2;
-    }else if (innerWidth >= 780 && innerWidth < 1050){
-        wdth=3;
-    }else if (innerWidth >= 1050){
-        wdth=4;
-    }
+export default ({goods, setFav,api}) => {
+    const {widthScreen, token} = useContext(Context);
 
     const  stCards = {
         padding: "30px 10px",
         display: "grid",
         justifyContent: "center",
         alignItems: "center",
-        gridTemplateColumns: `repeat(${wdth}, 1fr)`,
+        gridTemplateColumns: `repeat(${widthScreen}, 1fr)`,
         alignText: "center",
         gap: "20px"
     }
+    
 
     return<>
         <div className="card__favourits" style={stCards}>
-            {goods.length>0 ?  
-                goods.map((good,i) => <Card
+            {goods.length>0 && token ?  
+                goods.map((good) => <Card
                     {...good}
                     discount={good.discount}
                     name={good.name.length > 23 ? good.name.slice(0,23) + "..." : good.name}
@@ -39,9 +31,8 @@ export default ({goods, setFav,api}) => {
                     key={good._id}
                     api={api}
                     setFav={setFav}
-                />):
-            <h1 style={{gridColumnEnd: `soan ${wdth}`, textAlign: "center"}}>
-                Для отображение данных необходимо зайти</h1>
+                />):      
+                <Alternative/>
         }
         </div>
     </>

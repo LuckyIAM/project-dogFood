@@ -31,6 +31,9 @@
     align-items: center;
     font-size: 22px;
 }
+.row-direction{
+    display: flex;
+}
 .colum-direction span{
     
     font-size: 10px;

@@ -9,7 +9,7 @@ import Profile from "./pages/Profile"
 import Favourit from "./pages/Favourit";
 import AddProduct from "./pages/AddProduct";
 import Single from "./pages/Single";
-import Deleted from "./pages/Deleted"
+import Basket from "./pages/Basket"
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -28,7 +28,8 @@ const Context = React.createContext({});
 
 const App = () =>{
     const [goods,setGoods] = useState([]);
-    const [del, setDel] = useState([]);
+    const [basket, setBasket] = useState(localStorage.getItem("basket-product") ? JSON.parse(localStorage.getItem("basket-product")) : []);
+    const [idProduct, setIdProduct] = useState(localStorage.getItem("id-product") ? JSON.parse(localStorage.getItem("id-product")) : []);
     const [token, setToken] = useState(Local.getItem("token-user"));
     const [user, setUser] = useState(Local.getItem("user", true))
     const [userId, setUserId] = useState("627aa2b8fd97250691ade93f");
@@ -37,13 +38,15 @@ const App = () =>{
     const [fav, setFav] = useState([]);
     const defaultToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjdhYTJiOGZkOTcyNTA2OTFhZGU5M2YiLCJpYXQiOjE2Njk2NDU2NjIsImV4cCI6MTcwMTE4MTY2Mn0.w5k0o5hA1dE7Ew2A6MoyWaG7C4pUpgnw8dA5SFR-DaY";
     const api2 = new Api(defaultToken);
+    const[idAuthor, setIdAuthor] = useState()
     const [products, setProducts] = useState([]);
     const [searchText, search] = useState("");
     const [succes, setSucces] = useState(false);
     const [textContent, setTextContent] = useState('');
     const [widthScreen, setWidthScreen] = useState();
     const[product, setProduct]= useState({});
-    
+    const [count, setCount] = useState(localStorage.getItem("basket-product") ? count : 1);
+
     useEffect(()=>{
         if (innerWidth < 340){
             setWidthScreen(1);
@@ -60,6 +63,7 @@ const App = () =>{
         console.log("user is changed");
         setApi(new Api(token));
     }, [token])
+
 
 
     useEffect( () =>{
@@ -89,14 +93,11 @@ const App = () =>{
     }, [api])
     
     useEffect(()=>{
-        let f = goods.filter(el => el.likes.includes(user._id))
-        setFav(f);
+        if (token){
+            let f = goods.filter(el => el.likes.includes(user._id))
+            setFav(f);
+        }
         setProducts(goods)
-    }, [goods])
-
-    useEffect(()=>{
-        let d = goods.filter(prod => prod.likes.length === 0);
-        setDel(d)
     }, [goods])
 
 
@@ -111,14 +112,20 @@ const App = () =>{
         api: api, 
         setApi: setApi,
         api2: api2, 
-        token: token
+        token: token, 
+        basket: basket,
+        setBasket: setBasket,
+        idProduct: idProduct,
+        setIdProduct:setIdProduct, 
+        count: count,
+        setCount: setCount
         }}>
         <div className="wrapper"> 
-            { screen.width < 768 ? <HeaderMini products={data} update={setGoods} openPopup =
+            { screen.width < 768 ? <HeaderMini products={goods} update={setGoods} openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
             : <Header openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}
-            like = {fav.length}/>
+            like = {fav.length} basketLen={basket.length} />
             }
             <Routes>
                 <Route path="/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
@@ -127,11 +134,11 @@ const App = () =>{
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
                 {/* <Route path="/product/:id" element={<Product/>}/> */}
                 <Route path="/product/:id" element={token ? 
-                <Single user={user} userId={userId}/> : <Product/>}/>
+                <Single user={user} userId={userId} idAuthor={idAuthor} setIdAuthor={setIdAuthor}/> : <Product />}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
-                <Route path="/deleted" element ={<Deleted  del={del}/>}/>
+                <Route path="/basket" element ={<Basket  basket={basket} setBasket={setBasket}/>}/>
             </Routes>
-           {screen.width < 768 ? <FooterMini user={user} like = {fav.length}/> :<Footer user={user} like = {fav.length}/>}
+           {screen.width < 768 ? <FooterMini user={user} like = {fav.length} basketLen={basket.length}/> :<Footer user={user} like = {fav.length}/>}
         </div>
         {!token && <Modal isActive={popupActive}
         changeActive={changePopupActive} 

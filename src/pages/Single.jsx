@@ -4,11 +4,12 @@ import {useParams} from "react-router-dom";
 import {SignStopFill} from "react-bootstrap-icons"
 import {Container, Row, Col} from "react-bootstrap"
 import ProductCell from "../components/ProductCell";
+import Product from "./Product";
 
-export default({userId}) => {
+export default({userId, idAuthor, setIdAuthor}) => {
     const {api} = useContext(Context);
     const[product, setProduct]= useState({});
-    const[idAuthor, setIdAuthor] = useState();
+    // const[idAuthor, setIdAuthor] = useState();
     
     let params = useParams();
     useEffect(()=>{
@@ -31,10 +32,18 @@ export default({userId}) => {
             {product.description && <ProductCell value={product.description} setProduct={setProduct} id={params.id} type="description" tagMain="p" tagInp="textarea"/>}
         </div>
         :
-        <h2 className="text-center"> 
-        <SignStopFill className="text-danger"style={{fontSize: "100px"}}/> <br/>
-        Данный продукт изменить нельзя! <br/> 
-        Только автор может изменить.</h2>
+        <>
+        <Container>
+            <Row>
+                <Col md={12}>
+                <h2 className="text-secondary pb-5" > 
+                    Данный продукт изменить нельзя! Только автор может изменить.
+                </h2>
+                </Col>
+            </Row>
+        </Container>
+        <Product/>
+        </>
         }
     </>    
 }

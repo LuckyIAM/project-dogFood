@@ -1,13 +1,13 @@
 
-import React, {useState, useEffect, useContext} from "react";
+import React, { useContext } from "react";
 import {Context} from "../App";
 import Card from "../components/Card";
 import usePagination from "../hooks/usePagination";
 import Pagination from "../components/Pagination";
 
 export default ({setFav}) => {
-    const {searchText, products ,goods, widthScreen} = useContext(Context);
-    const paginate = usePagination(products, 4)
+    const {searchText, products , widthScreen} = useContext(Context);
+    const paginate = usePagination(products, 8)
 
     
     const st = {
@@ -28,9 +28,11 @@ export default ({setFav}) => {
     
     return <><div className="cards-container" style={st}>
             <div className="cards" style={stCardsContainer}>
-                { !searchText && goods.length > 0 && goods.map((d,i) =><Card 
+                { !searchText && products.length > 0 && paginate.pageData().map((d,i) =><Card 
                 key = {i}
                 {...d}
+                price_old={d.price}
+                price={Math.round(d.price / 100 * (100 - d.discount))}
                 setFav={setFav}
                 />)} 
             </div>
@@ -40,17 +42,15 @@ export default ({setFav}) => {
                 : <>По запросу <b>{searchText}</b> ничего не найдено</>}
             </div>}
             <div className="cards" style={stCardsContainer}>
-                {searchText && products.map((d,i) => <Card 
+                {searchText && paginate.pageData().map((d,i) => <Card 
                 key = {i}
+                price_old={d.price}
+                price={Math.round(d.price / 100 * (100 - d.discount))}
                 {...d}
                 setFav={setFav}/>)}
             </div>
             
         </div>
-        <div>
-            <button onClick={() => {paginate.prev()}}>&lt;</button>
-            <button onClick={() => {paginate.next()}}>&gt;</button>
-        </div>
-        <Pagination hook={paginate}/>
+        <Pagination hook={paginate} />
         </>
 }

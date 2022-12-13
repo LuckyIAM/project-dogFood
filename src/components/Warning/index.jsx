@@ -2,6 +2,7 @@ import React from "react";
 import {XCircle, SignStopFill} from "react-bootstrap-icons"
 import "./style.css";
 
+
 export default ({textContent, succes, setSucces}) => {
     return<div className={succes ? "popup-container active":"popup-container"}>
         
