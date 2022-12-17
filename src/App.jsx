@@ -20,6 +20,7 @@ import Warning from "./components/Warning";
 
 import Api from "./Api.js";
 import Local from "./Local";
+import AddComment from "./pages/AddComment";
 
 
 
@@ -46,7 +47,7 @@ const App = () =>{
     const [widthScreen, setWidthScreen] = useState();
     const[product, setProduct]= useState({});
     const [count, setCount] = useState(localStorage.getItem("basket-product") ? count : 1);
-
+    const [basketLen, setBasketLen] =useState(parseFloat(basketLen) > 0 ? basketLen : 0); 
     useEffect(()=>{
         if (innerWidth < 340){
             setWidthScreen(1);
@@ -100,6 +101,10 @@ const App = () =>{
         setProducts(goods)
     }, [goods])
 
+    useEffect(()=> {
+        let bLen = basket.length
+        setBasketLen(bLen);
+;    }, [basket])
 
     return <Context.Provider value={{
         widthScreen: widthScreen,
@@ -125,10 +130,10 @@ const App = () =>{
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}/>
             : <Header openPopup =
             {changePopupActive} user={!!token} setToken={setToken} setUser={setUser}
-            like = {fav.length} basketLen={basket.lenght} />
+            like = {fav.length} basketLen={basketLen} />
             }
             <Routes>
-                <Route path="/project-dogFood/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
+                <Route path="/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
                 <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
@@ -136,8 +141,9 @@ const App = () =>{
                 <Single user={user} userId={userId} idAuthor={idAuthor} setIdAuthor={setIdAuthor}/> : <Product />}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
                 <Route path="/basket" element ={<Basket  basket={basket} setBasket={setBasket}/>}/>
+                <Route path="/message-form" element={<AddComment/>}/>
             </Routes>
-           {screen.width < 768 ? <FooterMini user={user} like = {fav.length} basketLen={basket.lenght}/> :<Footer user={user} like = {fav.length}/>}
+           {screen.width < 768 ? <FooterMini user={user} like = {fav.length}/> :<Footer user={user} like = {fav.length}/>}
         </div>
         {!token && <Modal isActive={popupActive}
         changeActive={changePopupActive} 

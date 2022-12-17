@@ -1,7 +1,6 @@
 import React,{useState, useEffect, useContext} from "react";
 import { Context } from "../App";
 import {useParams} from "react-router-dom";
-import {SignStopFill} from "react-bootstrap-icons"
 import {Container, Row, Col} from "react-bootstrap"
 import ProductCell from "../components/ProductCell";
 import Product from "./Product";

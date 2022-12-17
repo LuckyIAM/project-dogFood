@@ -95,5 +95,16 @@ class Api{
         })
     }
 
+    addMessage(productId, body){
+        return fetch(`${this.path}/products/review/${productId}`, {
+            method : "POST",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+    }
+
 }
 export default Api;

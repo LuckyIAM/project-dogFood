@@ -1,15 +1,19 @@
+
+function localStore (key, value){
+    localStorage.removeItem(key);
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
 function addToBasket(goods, _id, idProduct, setIdProduct, basket, setBasket){  
     goods.forEach(element => { 
         element.count = 1;
         if (element._id === _id && !idProduct.includes(_id)){
             idProduct.push(element._id);
             setIdProduct(() => {return idProduct});
-            localStorage.removeItem("id-product");
-            localStorage.setItem("id-product", JSON.stringify(idProduct));  
+            localStore("id-product", idProduct);  
             basket.push(element);
             setBasket(() => {return basket});
-            localStorage.removeItem("basket-product");
-            localStorage.setItem("basket-product", JSON.stringify(basket));
+            localStore("basket-product", basket); 
             console.log("idProduct",idProduct);
             console.log("basket2",basket);
         }
@@ -25,6 +29,9 @@ function addToBasket(goods, _id, idProduct, setIdProduct, basket, setBasket){
         
     })     
 }
+function localSt (key, value){
 
-export{addToBasket}
+}
+
+export{addToBasket, localStore}
 

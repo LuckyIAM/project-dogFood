@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import { Container, Row, Col, Figure, Table, ButtonGroup, Button, Alert } from "react-bootstrap";
 import {Truck} from "react-bootstrap-icons";
 import { addToBasket } from "../Function";
+import Comment from "../components/Comment";
 
 export default() => {
     const {api, api2, token, goods, idProduct, setIdProduct, basket, setBasket} = useContext(Context);
@@ -32,7 +33,7 @@ export default() => {
     },[api, api2])
 
 
-    return <Container>
+    return <><Container>
         {product._id &&
         <Row>
             <Col xs={12}>
@@ -97,10 +98,10 @@ export default() => {
                 </Table>
                 
             </Col>
-            <Col xs = {12}>
-                <h2>Отзывы</h2>
-            </Col>
+            
         </Row>
     }
     </Container>
+    <Comment/>
+    </>
 }

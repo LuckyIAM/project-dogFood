@@ -7,6 +7,7 @@ import ButtonQuantity from "../ButtonQuantity";
 import "./style.css"
 
 import Local from "../../Local";
+import { localStore } from "../../Function";
 
 /*  как передать count в баскет для каждого???*/
 
@@ -62,12 +63,10 @@ const CardBasket =({name, wight, price, price_old, pictures, _id, likes, discoun
                 console.log("index", index);
                 basket.splice(index, 1);
                 setBasket(() => {return [...basket]})
-                localStorage.removeItem("basket-product");
-                localStorage.setItem("basket-product", JSON.stringify(basket));
+                localStore("basket-product", basket)
                 idProduct.splice(index,1);
                 setIdProduct(() => {return [...idProduct]});
-                localStorage.removeItem("id-product");
-                localStorage.setItem("id-product", JSON.stringify(idProduct));
+                localStore("id-product", idProduct)
                 console.log("basket del", basket, "\n idProduct del", idProduct);
           }  
           return basket;
