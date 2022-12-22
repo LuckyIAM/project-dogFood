@@ -64,21 +64,7 @@ class Api{
         })
         )
     }
-    singUp(){//зарегистрироваться
-        return(fetch(`${this.path}/signup`,{
-            method: "POST",
-            headers:{
-                authorization: `Bearer ${this.token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "email": "zavalishka1988@gmail.com",
-                "group": "group-7",
-                "password": "secter_pasword"
-            })
-        })
-        )
-    }
+    
     showProfile(){
        return fetch(`${this.path}/v2/group-7/users/me`, {
         headers: {
@@ -103,6 +89,16 @@ class Api{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
+        })
+    }
+    
+    getMessage(id_prod){
+        return fetch(`${this.path}/products/review/${id_prod}`,{
+            method : "GET",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                "Content-Type": "application/json"
+            }
         })
     }
 

@@ -12,9 +12,9 @@ import { localStore } from "../../Function";
 /*  как передать count в баскет для каждого???*/
 
 const CardBasket =({name, wight, price, price_old, pictures, _id, likes, discount}) => {
-    const {token, basket, setBasket, idProduct, setIdProduct, count, setCount} = useContext(Context);
+    const {token, basket, setBasket, idProduct, setIdProduct} = useContext(Context);
     const [like, setLike] = useState(false);
-    // const [count, setCount] = useState(localStorage.getItem("basket-product") ? count : 1);
+    const [count, setCount] = useState(localStorage.getItem("basket-product") ? count : 1);
     useEffect(()=>{
        basket.map(el => {
         if(el._id === _id){
@@ -22,7 +22,7 @@ const CardBasket =({name, wight, price, price_old, pictures, _id, likes, discoun
             return count;
         }
        }) 
-    }, [basket])
+    }, [count])
     const st = {
         position: "absolute",
         right: "5px",
@@ -72,7 +72,6 @@ const CardBasket =({name, wight, price, price_old, pictures, _id, likes, discoun
           return basket;
         })        
     }
-    console.log("count CardBasket", count);
     return(
         <Table>
             <tbody>
@@ -118,7 +117,6 @@ const CardBasket =({name, wight, price, price_old, pictures, _id, likes, discoun
                                 <div>{price}₽</div>
                                 <button className="del-btn bg-transparent border-0" type="submit" onClick={delToBasket}><Trash style={{fontSize: "30px", margin: "10px 0px"}} /></button>
                             </div>
-                            
                         </div>
                         }
                     </Link>

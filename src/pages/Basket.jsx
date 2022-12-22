@@ -6,12 +6,13 @@ import { Context } from "../App";
 import CardBasket from "../components/CardBasket";
 import Alternative from "../components/Alternative";
 
-export default ({api, setFav}) => {
-    const {token, basket, setBasket, count} = useContext(Context);
+export default () => {
+    const {token, basket, setBasket} = useContext(Context);
     const [total, setTotal] = useState(basket.length>0 ? total : 0);
     const [ _id, set_Id] = useState("");
     const [prdDiscounts, setProductsDiscounts] = useState(basket.length>0 ? prdDiscounts : 0);
     const [priceWithoutDiscount, setPriceWithoutDiscount] = useState(basket.length>0 ? priceWithoutDiscount : 0);
+
 
     useEffect(() => {
         let sumClean = 0;
@@ -20,7 +21,7 @@ export default ({api, setFav}) => {
         basket.forEach(element => {
             let price = Math.round(element.price / 100 * (100 - element.discount)) * element.count;
             sumClean = sumClean + price;
-            setTotal(sumClean)
+            setTotal(sumClean);
             let p = element.price * element.count;
             sumGross += p;
             setPriceWithoutDiscount(sumGross)
@@ -32,10 +33,10 @@ export default ({api, setFav}) => {
                 discounts +=0;
                 setProductsDiscounts(discounts);
             }
-            return element;
+            
         })
-        setBasket(() => {return basket});
-    }, [count, basket])
+        setBasket([...basket]);
+    },[basket]);
     
     
     
@@ -49,21 +50,17 @@ export default ({api, setFav}) => {
         gap: "20px"
     }
     const totalProducts = {
-        position: "relative",
-        top: "10vh",
-        left: "0px",
         display: "flex",
         flexDirection: "column",
         boxShadow: "0px 0px 3px 0px #888", 
         borderRadius: "15px",
         padding: "15px",
+        margin: "30px 10px",
         gap: "15px"
     }
     const deliverySt = {
-        position: "relative", 
-        top: "100px"
+        margin: "20px 20px"
     }
-    
 
     return <>{ basket.length>0 && token?
         <Container>
@@ -78,11 +75,8 @@ export default ({api, setFav}) => {
                             {...d}
                             price_old={d.price}
                             price={Math.round(d.price / 100 * (100 - d.discount))}
-                            api={api}
-                            setFav={setFav}
                             _id={d._id}
-                            />)
-                            
+                            />)  
                         }
                     </div>
                 </Col>
@@ -119,7 +113,7 @@ export default ({api, setFav}) => {
                         </div>
                         <button className="btn position-relative top-40 start-0 w-100">Оформить заказ</button>
                     </div>
-                    <div className="delivery bg-light p-4 rounded-4" style={deliverySt}>
+                    <div className="delivery bg-light p-4 rounded-4 m-1" style={deliverySt}>
                         <Row>
                             <Col md={2}>
                                 <Truck className="fw-bolder fs-3"/>

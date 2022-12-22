@@ -1,5 +1,6 @@
 import React from "react"
 import {Container, Row, Col, Figure} from "react-bootstrap"
+import Alternative from "../components/Alternative"
 
 export default ({user}) => {
     return <Container>
@@ -17,8 +18,8 @@ export default ({user}) => {
             </Col>
         </Row>:
         <Row>
-            <Col>
-                <h1>Дла входа в страницу профеля. Пожайлуста регистрируитесь!</h1>
+            <Col md={12} xs={12}>
+                <Alternative/>
             </Col>
         </Row>
         }

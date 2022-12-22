@@ -32,7 +32,9 @@ export default ({goods, setFav,api}) => {
                     api={api}
                     setFav={setFav}
                 />):      
-                <Alternative/>
+                <div className="alternativ-box" style={{gridColumn: `span ${widthScreen}`}}>
+                    <Alternative/>
+                </div>
         }
         </div>
     </>

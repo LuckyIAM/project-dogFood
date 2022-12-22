@@ -1,0 +1,23 @@
+.btn-left{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px 10px;
+    color: #777;
+    font-weight: 800;
+}
+.btn-right{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 0px 10px;
+    color: #777;
+    font-weight: 800;
+}
+.btn-cells{
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0px 2px;
+}

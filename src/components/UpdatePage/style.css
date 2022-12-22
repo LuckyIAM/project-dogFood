@@ -1,0 +1,25 @@
+.popup-reload{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0003;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.active{
+    display: flex;
+}
+.popup2{
+    width: 80vw;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+}
+.qastion{
+    color:#777;
+    font-weight: 800;
+}

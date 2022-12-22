@@ -1,7 +1,7 @@
 .wrapper_footer {
     display: flex;
     background-color: var(--main-color);
-    
+    margin-top: 10px;
 }
 .contact, .icon_contact{
     display: flex; 

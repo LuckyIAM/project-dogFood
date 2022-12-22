@@ -7,8 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Local from "../../Local";
 
 
-export default ({isActive, changeActive, setToken, setUser, setSucces, setTextContent}) =>{
-    const {api}=useContext(Context); 
+export default ({idParams, isActive, changeActive, setToken, setUser, setSucces, setTextContent}) =>{
+    const {api, setUpdPage, updPage}=useContext(Context); 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("")
     
@@ -25,7 +25,10 @@ export default ({isActive, changeActive, setToken, setUser, setSucces, setTextCo
                     setUser(data.data);
                     setEmail("");
                     setPwd("")
-                    changeActive(false)
+                    changeActive(false);
+                    if(window.location.href === `http://localhost:3000/product/${localStorage.getItem("id-params")}`){
+                        setUpdPage(true);
+                    }
                 }else if (data.message !== "ok"){
                    localStorage.removeItem("token-user");
                    localStorage.removeItem("user");

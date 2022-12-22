@@ -7,7 +7,7 @@ export default ({count, setCount, _id}) => {
     const addQuantity = e => {
         e.stopPropagation();
         e.preventDefault();
-        setCount(() => {return count + 1});
+        setCount(count + 1);
         setBasket(() =>{
             basket.map(el => {
                 console.log("id", _id);
@@ -29,7 +29,7 @@ export default ({count, setCount, _id}) => {
         e.stopPropagation();
         e.preventDefault();
         if(count > 1){
-            setCount(() => {return count - 1});
+            setCount(count - 1);
             setBasket(() =>{
                 basket.map(el => {
                     console.log("id", _id);

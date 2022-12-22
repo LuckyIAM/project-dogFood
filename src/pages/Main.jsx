@@ -86,7 +86,6 @@ export default({setFav, goods}) => {
                 работы с доставкой по России и Миру
             </p>
             <Link to="/catalog" ><button className="btn-catalog" style={btn}>Каталог<ChevronRight/></button></Link>
-            <h3> С глвной страници избрать любимые продукты невозможно. <br/>Это возможно только при регистрации в разделе каталог и избранное.</h3>
         </div>
     </div>
 

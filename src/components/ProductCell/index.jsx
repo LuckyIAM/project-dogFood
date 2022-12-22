@@ -2,7 +2,7 @@ import React,{useState, useEffect, useContext} from "react";
 import { Context } from "../../App";
 import { XCircle, CheckCircle, PencilSquare} from "react-bootstrap-icons"
 
-export default({product, setProduct, id, value, type, tagMain, tagInp}) => {
+export default({setProduct, id, value, type, tagMain, tagInp}) => {
     const {api} = useContext(Context);
     const [flag,setFlag] = useState(false)
     const [content, setContent] = useState(value);
@@ -16,7 +16,7 @@ export default({product, setProduct, id, value, type, tagMain, tagInp}) => {
             .then(rest => rest.json())
             .then(data => {
                 console.log(data);
-                setProduct(data);
+                setProduct(JSON.parse(localStorage.getItem("page-product")));
                 setContent(data[type]);
                 setFlag(false)
             })

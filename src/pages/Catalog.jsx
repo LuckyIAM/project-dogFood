@@ -47,7 +47,7 @@ export default ({setFav}) => {
                 price_old={d.price}
                 price={Math.round(d.price / 100 * (100 - d.discount))}
                 {...d}
-                setFav={setFav}/>)}
+                />)}
             </div>
             
         </div>

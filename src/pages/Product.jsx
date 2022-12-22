@@ -1,41 +1,102 @@
 import React,{useState, useEffect, useContext} from "react";
 import { Context } from "../App";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import { Container, Row, Col, Figure, Table, ButtonGroup, Button, Alert } from "react-bootstrap";
-import {Truck} from "react-bootstrap-icons";
+import {Truck } from "react-bootstrap-icons";
 import { addToBasket } from "../Function";
-import Comment from "../components/Comment";
+import FeedBack from "../components/FeedBack";
+
+
 
 export default() => {
-    const {api, api2, token, goods, idProduct, setIdProduct, basket, setBasket} = useContext(Context);
-    const[product, setProduct]= useState({});
+    const {api, api2, token, goods, idProduct, setIdProduct, basket, setBasket,
+        setUserId, userId, idParams, setIdParams, product, setProduct, allComment, setAllComment, user} = useContext(Context);
+    const navigationtoChangeProduct = useNavigate();
     const [cnt, setCnt] = useState(0);
     const [_id, set_Id] = useState("");
     let params = useParams();
+
+
     useEffect(()=>{
         set_Id(params.id)
-    },[basket])
+        localStorage.setItem("id-params", params.id)
+        setIdParams(localStorage.getItem("id-params"));
+    },[])
+    
+    useEffect(()=>{
+        console.log(token);
+        if(token){
+        api.getProduct(params.id)
+            .then(res => res.json())
+            .then(data => {
+                if(data.message === "Необходима авторизация"){
+                    console.log("Show Modal");
+                }else{
+                   
+                    localStorage.setItem("page-product", JSON.stringify(data));
+                    setProduct(JSON.parse(localStorage.getItem("page-product")));
+                    setUserId(data.author._id)
+                }
+                 
+            })
+        api.getMessage(params.id)
+            .then(res => res.json())
+            .then(data => {
+                if(data.message === "Необходима авторизация"){
+                    setAllComment(JSON.parse(localStorage.getItem("comment")));
+                }else{
+                    localStorage.setItem("comment", JSON.stringify(data))
+                    setAllComment(JSON.parse(localStorage.getItem("comment")));
+                    console.log(allComment);
+                }
+            })
+        }
+    },[])
 
     useEffect(()=>{
-        if(token){
-            api.getProduct(params.id)
-            .then(res => res.json())
-            .then(data => {
-                setProduct(data)
-            })
-        }else{
+        if(!token){
             api2.getProduct(params.id)
-            .then(res => res.json())
-            .then(data => {
-                setProduct(data) 
-            })    
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem("page-product", JSON.stringify(data))
+                    setProduct(JSON.parse(localStorage.getItem("page-product")));
+                    console.log(product);
+            })  
+            api2.getMessage(params.id)
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem("comment", JSON.stringify(data))
+                    setAllComment(JSON.parse(localStorage.getItem("comment")));
+                    console.log(allComment);
+            })
         }
-    },[api, api2])
-
+    },[])
+      
+   console.log(user._id !== userId, user._id, userId);
 
     return <><Container>
+        
         {product._id &&
         <Row>
+            {user._id !== userId 
+            ?
+            <Col md={12}>
+                <h2 className="text-secondary pb-5" > 
+                    Данный продукт изменить нельзя! Только автор может изменить.
+                </h2>
+            </Col>
+            :
+            <Col md={12}>
+                <h2 className="text-secondary pb-5" > 
+                    Вы автор данного продукта!
+                </h2>
+                <Button className="btn" onClick={e => {
+                    e.stopPropagation();
+                    navigationtoChangeProduct(`/productchange/${params.id}`)
+                }}>Изменить продукт</Button>
+            </Col>
+            }
+
             <Col xs={12}>
             <h1>{product.name}</h1>
             </Col>
@@ -98,10 +159,9 @@ export default() => {
                 </Table>
                 
             </Col>
-            
         </Row>
     }
     </Container>
-    <Comment/>
+    <FeedBack/>
     </>
 }

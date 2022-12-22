@@ -10,10 +10,10 @@ function addToBasket(goods, _id, idProduct, setIdProduct, basket, setBasket){
         if (element._id === _id && !idProduct.includes(_id)){
             idProduct.push(element._id);
             setIdProduct(() => {return idProduct});
-            localStore("id-product", idProduct);  
-            basket.push(element);
-            setBasket(() => {return basket});
-            localStore("basket-product", basket); 
+            localStore("id-product", idProduct); 
+            let newBasket = [... basket, element] 
+            setBasket(newBasket);
+            localStore("basket-product", newBasket); 
             console.log("idProduct",idProduct);
             console.log("basket2",basket);
         }

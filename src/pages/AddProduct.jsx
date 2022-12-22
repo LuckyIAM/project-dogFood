@@ -1,10 +1,11 @@
 import React, {useState, useContext} from "react";
 import {Container, Row, Col, Form, Button, Image} from "react-bootstrap";
 import {Context} from "../App";
+import Alternative from "../components/Alternative";
 
 
 export default () =>{
-    const {api, setGoods} = useContext(Context);
+    const {api, token, setGoods} = useContext(Context);
     const [inp1, setInp1] = useState("");
     const [inp2, setInp2] = useState("");
     const [inp3, setInp3] = useState("");
@@ -41,6 +42,7 @@ export default () =>{
         })
     }
     return <Container>
+        { token ?
         <Row className="py-5">
             <Col xs={12}>
                 <h2>Добавить товар</h2>
@@ -82,6 +84,8 @@ export default () =>{
                 {inp2 && <Image src={inp2} className="w-100"/>}
             </Col>
         </Row>
+        :
+        <Alternative/>}
         
     </Container>
 
