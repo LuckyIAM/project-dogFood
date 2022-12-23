@@ -90,7 +90,7 @@ export default() => {
                 <h2 className="text-secondary pb-5" > 
                     Вы автор данного продукта!
                 </h2>
-                <Button className="btn" onClick={e => {
+                <Button className="btn" type="submit" onClick={e => {
                     e.stopPropagation();
                     navigationtoChangeProduct(`/productchange/${params.id}`)
                 }}>Изменить продукт</Button>

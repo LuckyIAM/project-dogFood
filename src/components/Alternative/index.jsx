@@ -23,6 +23,7 @@ export default () => {
         cursor: "pointer",
     }
     const btnChoise = {
+        width: "70vw",
         fontSize: "25px",
         fontWeight: "700",
         cursor: "pointer",
@@ -38,12 +39,14 @@ export default () => {
             Для отображение данных необходимо регистрация
         </h1>
         <h2>Без регистраций можете переходить в разделах:</h2>
-        <div className="page-choise" style={widthScreen >= 575 ? pageChoise1 : pageChoise2}>
-            <button style={btnChoise} 
+        <div className="page-choise" style= {widthScreen > 575 ? pageChoise1 : pageChoise2}>
+            <button className="btn" 
+            style={btnChoise} 
             onClick={() => {
                 navigateToMain("/");
             }}>Главная</button>
-            <button style={btnChoise}
+            <button className="btn" 
+            style={btnChoise}
             onClick={() => {
                 navigateToCatalog("/catalog");
             }}>Каталог</button>

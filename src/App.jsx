@@ -12,6 +12,7 @@ import Single from "./pages/Single";
 import Basket from "./pages/Basket";
 import AddComment from "./pages/AddComment";
 
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FooterMini from "./components/FooterMini";
@@ -21,10 +22,6 @@ import UpdatePage from "./components/UpdatePage";
 
 import Api from "./Api.js";
 import Local from "./Local";
-
-
-
-
 
 const Context = React.createContext({});
 
@@ -156,7 +153,8 @@ const App = () =>{
                 <Route path="/productchange/:id" element={<Single/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
                 <Route path="/basket" element ={<Basket  basket={basket} setBasket={setBasket}/>}/>
-                <Route path="/message-form" element={<AddComment/>}/>                
+                <Route path="/message-form" element={<AddComment/>}/>  
+                {/* <Route path="/signup" element={<SignUp/>}/>                */}
             </Routes>
            {screen.width < 768 ? <FooterMini user={user} like = {fav.length} basketLen={basketLen}/> :<Footer user={user} like = {fav.length}/>}
         </div>
