@@ -148,7 +148,7 @@ const App = () =>{
             like = {fav.length} basketLen={basketLen} />
             }
             <Routes>
-                <Route path="/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
+                <Route path="/project-dogFood/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
                 <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>
