@@ -29,7 +29,7 @@ export default({setFav, goods}) => {
     const [transform3, setTransform3] = useState(0);
     const [cnt4, setCnt4] = useState(1);
     const [transform4, setTransform4] = useState(0);
-
+    console.log(widthScreen);
     const text1 = ['Наборы','Микс масел','Рога \nсеверного \nоленя','Слипы из \n шеи индейки']
     const text2 = [`для дрессировке `,`пищевая здоровая \n натуральная добавка`,'от 10кг до 30кг','100% натуральное']
     const text3 = ['от 480 ₽','']
@@ -103,7 +103,7 @@ export default({setFav, goods}) => {
                         if( cnt1 !== 1 && gds.length !== 0){
                             setCnt1(cnt1 - 1);
                             setTransform1(transform1 + (280 * widthScreen));
-                            console.log(cnt1, transform1);
+                            console.log(cnt1, transform1, widthScreen);
                         }
                     }}/>
                  

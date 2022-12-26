@@ -13,9 +13,14 @@ export default () =>{
         padding: "20px 40px",
         color: "#fff"
     }
+    const st3 = {
+        borderRadius:"15px", 
+        backgroundColor: "#ff9027", 
+        padding: "10px", 
+        marginBottom: "10px"}
     return(
     <Container>
-        <Row style={{borderRadius:"15px", backgroundColor: "#ff9027", padding: "20px", marginBottom: "20px"}}>
+        <Row style={st3}>
             <Col md={6} xs={6} style={st1}>
                 <h1>Подарок за<br/>первый заказ! </h1>
                 <p>Легкое говяжье - пластины</p>

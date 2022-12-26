@@ -51,7 +51,7 @@ const App = () =>{
     const [updPage, setUpdPage] = useState(false)
     
     useEffect(()=>{
-        if (innerWidth < 340){
+        if (innerWidth < 500){
             setWidthScreen(1);
         }else if (innerWidth >= 500 && innerWidth < 780){
             setWidthScreen(2);
