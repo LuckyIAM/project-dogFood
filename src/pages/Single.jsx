@@ -7,19 +7,8 @@ import Product from "./Product";
 
 export default() => {
     const {token, userId, user, product, setProduct} = useContext(Context);
-    // const [product, setProduct] = useState({});
     let params = useParams();
-    
-    // useEffect(() => {
-    //     api.getProduct(params.id)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             setProduct(data);
-    //         })
-    // }, []); 
-
-
+  
 console.log("single", user === userId, user._id , userId  );
     return  <>{token ? <div style={{display: "grid", gap: "20px", gridTemplateColums: "repeat(2, 1fr)", width: "600px", padding: "10px 30px"}}>
             {product.name && <ProductCell value={product.name} setProduct={setProduct} id={params.id} type="name" tagMain="h1" tagInp="input"/>}

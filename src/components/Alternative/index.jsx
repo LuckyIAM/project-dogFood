@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { Context } from "../../App";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 
 export default () => {
-    const {widthScreen} = useContext(Context);
     const navigateToMain = useNavigate();
     const navigateToCatalog = useNavigate(); 
     const pageChoise1 = {
@@ -18,34 +16,35 @@ export default () => {
         display : "flex",
         flexDirection: "column",
         justifyContent: "center",
+        alignItems: "center",
         fontSize: "25px",
         fontWeight: "700",
         cursor: "pointer",
     }
     const btnChoise = {
-        width: "70vw",
+        width: window.innerWidth > 575 ? "250px" : "80vw",
         fontSize: "25px",
         fontWeight: "700",
         cursor: "pointer",
         backgroundColor: "var(--main-color)",
         border: "none",
-        padding: "7px 30px",
+        padding: "4px 30px",
         borderRadius: "20px",
         margin: "15px"
     }
-
-    return <div style={{ textAlign: "center"}}>
+    console.log(window.innerWidth);
+    return <div style={{ textAlign: "center", height: "70vh"}}>
         <h1>
             Для отображение данных необходимо регистрация
         </h1>
         <h2>Без регистраций можете переходить в разделах:</h2>
-        <div className="page-choise" style= {widthScreen > 575 ? pageChoise1 : pageChoise2}>
-            <button className="btn" 
+        <div className="page-choise" style= {window.innerWidth > 575 ? pageChoise1 : pageChoise2}>
+            <button 
             style={btnChoise} 
             onClick={() => {
                 navigateToMain("/project-dogFood/");
             }}>Главная</button>
-            <button className="btn" 
+            <button 
             style={btnChoise}
             onClick={() => {
                 navigateToCatalog("/catalog");

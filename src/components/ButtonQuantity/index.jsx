@@ -15,8 +15,9 @@ export default ({count, setCount, _id}) => {
                     el.count = count + 1; 
                     return el;
                 }
-                console.log("element", el, "count",count, "id", _id);
+                
             })
+            window.location.reload()
             localStorage.removeItem("basket-product");
             localStorage.setItem("basket-product", JSON.stringify(basket)); 
             console.log("basket in ButtonQuantity", basket);
@@ -37,7 +38,7 @@ export default ({count, setCount, _id}) => {
                         el.count = count - 1; 
                         return el;
                     }
-                    console.log("element", el, "count",count, "id", _id);
+                    window.location.reload()
                 })
                 localStorage.removeItem("basket-product");
                 localStorage.setItem("basket-product", JSON.stringify(basket)); 

@@ -99,7 +99,7 @@ export default({openPopup, user, setToken, setUser}) => {
             </div>
            
             <div className="slide-bar" style={stSlideBar}>
-                    <div className="wrapper" style={wrappSlideBar}>
+                    <div className="wrapper-slade-bar" style={wrappSlideBar}>
                         <Container >
                             <Row >
                                 <Col sm={12} style={{height: ``}}>

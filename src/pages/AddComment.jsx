@@ -1,23 +1,6 @@
-// {
-//     "rating": 3,
-//     "_id": "6395bdd259b98b038f779e7d",
-//     "text": "Ещё один тест.",
-//     "author": {
-//         "name": "Максим",
-//         "about": "Ментор",
-//         "avatar": "https://react-learning.ru/image-compressed/default-image.jpg",
-//         "_id": "622f9992ae5c40c10c11dfe4",
-//         "email": "admin@react-learning.ru",
-//         "__v": 0
-//     },
-//     "product": "622c779c77d63f6e70967d1c",
-//     "created_at": "2022-12-11T11:24:02.392Z",
-//     "updated_at": "2022-12-11T11:24:02.392Z",
-//     "__v": 0
-// },
-import React, {useState, useContext, useEffect} from "react";
+
+import React, { useState, useContext } from "react";
 import { Context } from "../App";
-import Api from "../Api";
 
 
 export default() => {

@@ -36,7 +36,7 @@ export default () => {
             
         })
         setBasket([...basket]);
-    },[basket]);
+    },[basket.length]);
     
     
     

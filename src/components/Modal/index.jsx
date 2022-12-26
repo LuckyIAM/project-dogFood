@@ -17,7 +17,7 @@ export default ({isActive, changeActive, setToken, setUser, setSucces, setTextCo
 
 
     const btnLogIn = {
-        width: "265px",
+        width: "240px",
         margin: "10px"
     }
     
