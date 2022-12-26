@@ -10,7 +10,7 @@ export default ({goods, transform, setFav}) =>{
         display: "flex",
         gap: "30px",
         position: "relative",
-        transition: "2s transform ease-out",
+        transition: "1s transform ease-out",
         transform: `translateX(${transform}px)`
     }
     

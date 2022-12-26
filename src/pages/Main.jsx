@@ -91,7 +91,7 @@ export default({setFav, goods}) => {
 
     <Container style={container}>
         <Row>
-            <Col md={12} xs={12}style={{borderRadius: "15px", backgroundColor: "#ff9027", padding: "20px", marginBottom: "20px"}}>
+            <Col md={12} xs={12}style={{borderRadius: "20px", marginBottom: "170px"}}>
                 <Advertising/>
             </Col>
             <Col md={6} xs={6}>
@@ -179,7 +179,7 @@ export default({setFav, goods}) => {
             <Col md={12} xs={12} style={stCarousel}>
                 <Blog transform={transform3} data={dataBlog} />
             </Col>
-            <Col md={12} xs={12} style={{borderRadius: "15px", backgroundColor: "#ff9027"}}>
+            <Col md={12} xs={12} style={{marginBottom: "150px"}}>
                 <Advertising />
             </Col>
             <Col md={6} xs={6} style={marginCarousel}>
