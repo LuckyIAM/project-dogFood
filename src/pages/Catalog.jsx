@@ -19,7 +19,7 @@ export default ({setFav}) => {
      const  stCardsContainer = {
         display: "grid",
         gridTemplateColumns: `repeat(${widthScreen}, 1fr)`,
-        gap: "20px"
+        gap: "5px"
     }
     const stWarningLike = {
         gridColumnEnd: `span ${widthScreen}`,  

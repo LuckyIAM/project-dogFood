@@ -47,7 +47,7 @@ export default () =>{
             <Col xs={12}>
                 <h2>Добавить товар</h2>
             </Col>
-            <Col xs={6}>
+            <Col xs={12} md={6}>
                 <Form onSubmit={handler}>
                     <Form.Group>
                         <Form.Label>Название товара</Form.Label>

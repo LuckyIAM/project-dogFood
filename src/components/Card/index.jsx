@@ -9,8 +9,8 @@ import {addToBasket} from "../../Function";
 
 
 
-const Card =({name, price, price_old, pictures, _id, likes, discount, setFav, func}) => {
-    const[like, setLike] = useState(false);
+const Card =({name, price, price_old, pictures, _id, likes, discount, setFav}) => {
+    const [like, setLike] = useState(false);
     let params = useParams()
     const {api, token,  goods, basket, setBasket, idProduct, setIdProduct} = useContext(Context);
 
@@ -89,7 +89,11 @@ const Card =({name, price, price_old, pictures, _id, likes, discount, setFav, fu
                     addToBasket(goods, _id, idProduct, setIdProduct, basket, setBasket)
                     }
                 }>
-                    В корзину</button>
+                    {idProduct.includes(_id)?
+                      "Уже в корзине"
+                     :
+                      "В корзину"}
+                </button>
             </div>
         </Link>
         

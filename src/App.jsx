@@ -48,7 +48,7 @@ const App = () =>{
     const [product, setProduct]= useState({});
     const [allComment, setAllComment] = useState(JSON.parse(localStorage.getItem("comment")) || []);
     const [basketLen, setBasketLen] =useState(parseFloat(basketLen) > 0 ? basketLen : 0); 
-    const [updPage, setUpdPage] = useState(false)
+    const [updPage, setUpdPage] = useState(false);
     
     useEffect(()=>{
         if (innerWidth < 500){
@@ -145,7 +145,7 @@ const App = () =>{
             like = {fav.length} basketLen={basketLen} />
             }
             <Routes>
-                <Route path="/project-dogFood/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
+                <Route path="/" element={<Main setFav={setFav} api2={api2} goods={goods} />}/>
                 <Route path="/add" element={<AddProduct />} />
                 <Route path="/favourites" element={<Favourit goods = {fav} setFav={setFav} api={api}/>} />
                 <Route path="/catalog" element={<Catalog setFav={setFav} api2={api2} products={products}/>}/>

@@ -1,13 +1,14 @@
-import React,{ useContext } from "react";
+import React,{ useContext, useState } from "react";
 import { Context } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import CardComment from "../CardComment";
 
 export default () => {
-    const { allComment, token, changePopupActive } = useContext(Context);
+    const { allComment, token, changePopupActive, user, setIdReview } = useContext(Context);
     const months = ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"]
     const navigateToMessageForm = useNavigate();
+    
 
     const styleStars ={
         display: "flex",
@@ -23,7 +24,7 @@ export default () => {
         fontSize : "21px",
         color: "#888"
     }
-    console.log("feedback", allComment);
+    console.log("feedback", allComment, "user",user);
  
     return <Container>
         <Row>
@@ -68,6 +69,8 @@ export default () => {
                         :
                         <span className="text-warning"style={fontSizeFill}>{"٭".repeat(5)}</span>}
                     text={comment.text}
+                    button_del={comment.author._id === user._id ?  "удалить отзыв"  : null}
+                    rewiev={comment._id}
                     />)}
                 </div>
             </Col>

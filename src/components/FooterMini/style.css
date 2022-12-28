@@ -1,4 +1,4 @@
-.wrapper_footer {
+.wrapper_footer-mini{
     display: flex;
     background-color: var(--main-color);
     margin-top: 10px;
@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
 }
-.contact > span {
+.contact span   {
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -19,9 +19,13 @@
     box-shadow: 0 -5px 5px -5px #888;
     margin-top: 15px;
     display: flex; 
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     gap: 15px;
+    background-color: var(--main-color);
+    position: fixed;
+    bottom: 0px;
+    left: 0;
 }
 .colum-direction{
     padding: 5px;

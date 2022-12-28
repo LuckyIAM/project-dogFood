@@ -101,6 +101,16 @@ class Api{
             }
         })
     }
+    //DELETE https://api.react-learning.ru/products/review/:productId/:reviewId
+    delMessage(product_id, review_id){
+        return fetch(`${this.path}/products/review/${product_id}/${review_id}`,{
+            method : "DELETE",
+            headers: {
+                authorization: `Bearer ${this.token}`,
+                "Content-Type": "application/json"
+            }
+        }) 
+    }
     signUp(body){
         return fetch(`${this.path}/signup`, {
             method: "POST",

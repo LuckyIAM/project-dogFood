@@ -43,14 +43,19 @@ export default({openPopup, user, setToken, setUser}) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        position: "sticky",
+        left: 0,
+        top: 0,
+        zIndex: 2
+        
     }
     const stNavWrapper = {
         display: "flex",
         backgroundColor: "var(--main-color)",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 1
+        zIndex: 1,
     }
     const inputSize = {
         width: "40vw"
