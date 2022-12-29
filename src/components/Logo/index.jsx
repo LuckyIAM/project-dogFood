@@ -4,7 +4,7 @@ import logo from "./img/logo.svg";
 import {Link} from "react-router-dom";
 
 export default() =>{
-    return <Link className="logo" to="/">
+    return <Link className="logo" to="/project-dogFood/">
         <img src={logo} alt="Dog Food"/>
         {/* <span>DogFood</span> */}
     </Link>

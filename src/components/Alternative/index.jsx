@@ -42,7 +42,7 @@ export default () => {
             <button 
             style={btnChoise} 
             onClick={() => {
-                navigateToMain("/");
+                navigateToMain("/project-dogFood/");
             }}>Главная</button>
             <button 
             style={btnChoise}

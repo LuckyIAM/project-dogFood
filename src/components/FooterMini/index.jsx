@@ -32,7 +32,7 @@ export default({user, like, basketLen})=>{
                 <span style={{marginBottom: "60px"}}><br/>© "Интернет магазин натуральных лакомств для собак HotDog.ru"</span>
             </div>
             <nav className="footer-nav">
-                <Link to="/" className="colum-direction">
+                <Link to="/project-dogFood/" className="colum-direction">
                     <House/>
                     <span>Гавная</span>
                 </Link>
